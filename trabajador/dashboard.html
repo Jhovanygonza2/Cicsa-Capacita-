@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CICSA Capacita — Mi aprendizaje</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body class="aprendizaje-animado">
+
+<div class="app-shell">
+  <aside class="app-sidebar" id="sidebar-trabajador">
+    <div class="marca marca-corporativa">
+      <img src="../assets/cicsa-logo.png" alt="CICSA" class="logo-cicsa-trabajador">
+      <span>CAPACITACIÓN</span>
+    </div>
+
+    <ul class="nav-lateral">
+      <li><a href="inicio.html"><span class="icono icono-lineal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5Z"></path></svg></span> Inicio</a></li>
+      <li><a href="dashboard.html" class="activo"><span class="icono icono-lineal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg>
+      </span> Mi aprendizaje</a></li>
+      <li><a href="perfil.html"><span class="icono icono-lineal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 19c1.4-3.2 4.3-4.8 8-4.8s6.6 1.6 8 4.8"></path></svg>
+      </span> Mi perfil</a></li>
+      <li><a href="tutorial.html"><span class="icono icono-lineal">?</span> Tutorial de uso</a></li>
+    </ul>
+
+    <div class="tarjeta-usuario-sidebar">
+      <div class="avatar" id="avatar-trabajador">--</div>
+      <div>
+        <div class="nombre" id="nombre-trabajador">—</div>
+        <div class="rol">Trabajador</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="app-main-panel">
+    <!-- NAVBAR SUPERIOR -->
+    <nav class="navbar-top">
+      <button class="btn btn-texto sidebar-toggle" id="btn-toggle-sidebar-trabajador" type="button" aria-controls="sidebar-trabajador" aria-expanded="false" aria-label="Abrir menú de navegación">☰</button>
+      <div class="navbar-centro">
+        <div class="buscador-nav">
+          <svg class="icono-lupa" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="5.5"></circle>
+            <path d="M16 16L20.5 20.5"></path>
+          </svg>
+          <input type="search" id="buscar-curso" placeholder="Buscar cursos…" aria-label="Buscar cursos" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="navbar-derecha">
+        <div class="notificaciones-wrap">
+          <button class="btn btn-texto notificaciones-btn" id="btn-notificaciones" type="button" aria-haspopup="dialog" aria-controls="modal-notificaciones" aria-expanded="false" title="Notificaciones" aria-label="Notificaciones" style="display: none;">
+            <svg class="notificaciones-icono" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 16.5h11l-1.1-1.1a2.1 2.1 0 0 1-.6-1.5V10a4.8 4.8 0 1 0-9.6 0v3.9c0 .6-.2 1.1-.6 1.5L6.5 16.5Z"></path>
+              <path d="M10 18.5a2 2 0 0 0 4 0"></path>
+            </svg>
+            <span class="notificaciones-badge" id="notificaciones-badge">0</span>
+          </button>
+        </div>
+        <button class="btn btn-texto help-btn" title="Ayuda" aria-label="Ayuda">
+          <svg class="help-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5"></circle>
+            <path d="M9.6 9.4A2.7 2.7 0 0 1 13 8.3a2.6 2.6 0 0 1 1 4.9c-.8.6-1.5 1.1-1.5 2.3"></path>
+            <path d="M12 17.4h.01"></path>
+          </svg>
+        </button>
+        <button class="disparador-perfil" id="disparador-perfil">
+          <div class="avatar" id="avatar-trabajador-compact">--</div>
+          <div class="datos">
+            <div class="nombre" id="nombre-trabajador-compact">—</div>
+          </div>
+        </button>
+      </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="app-contenido-top">
+      <div class="dashboard-layout">
+        
+        <!-- COLUMNA PRINCIPAL (70%) -->
+        <div class="dashboard-main">
+          <div class="encabezado-vista">
+            <h2 id="bienvenida-trabajador">Bienvenido</h2>
+            <p class="muted">Cursos en progreso asignados a tu cuenta</p>
+          </div>
+
+          <!-- ESTADÍSTICAS -->
+          <div class="tarjeta" style="margin-top: var(--gap-lg);">
+            <h3 style="margin-bottom: var(--gap-md);">Tu progreso</h3>
+            <div style="display: flex; justify-content: space-around; gap: var(--gap-md);">
+              <div style="text-align: center;">
+                <div style="font-size: 20px; font-weight: 700; color: var(--verde-primario);" id="stat-completados">0</div>
+                <p style="font-size: 12px; color: var(--gris-suave); margin-top: 4px;">Completados</p>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 20px; font-weight: 700; color: var(--verde-claro);" id="stat-progreso">0</div>
+                <p style="font-size: 12px; color: var(--gris-suave); margin-top: 4px;">En progreso</p>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 20px; font-weight: 700; color: var(--advertencia);" id="stat-noIniciados">0</div>
+                <p style="font-size: 12px; color: var(--gris-suave); margin-top: 4px;">No iniciados</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FILTROS Y VISTA -->
+          <div class="barra-acciones">
+            <select id="filtro-academia" style="padding: 8px 12px; border-radius: var(--radio-md); border: 1px solid var(--gris-borde); background: var(--blanco); cursor: pointer;">
+              <option value="">Todas las academias</option>
+              <option value="Academia técnica">Academia técnica</option>
+              <option value="Academia de liderazgo">Academia de liderazgo</option>
+            </select>
+            
+            <select id="filtro-tipo" style="padding: 8px 12px; border-radius: var(--radio-md); border: 1px solid var(--gris-borde); background: var(--blanco); cursor: pointer;">
+              <option value="">Todos los tipos</option>
+              <option value="Obligatorio">Obligatorio</option>
+              <option value="Electivo">Electivo</option>
+            </select>
+
+            <div style="margin-left: auto; display: flex; gap: var(--gap-sm);">
+              <button class="btn btn-secundario btn-sm activo" id="vista-grilla" title="Vista de grilla" aria-label="Vista de grilla">◫</button>
+            </div>
+          </div>
+
+          <!-- GRID DE CURSOS -->
+          <div class="rejilla-cursos" id="rejilla-cursos-trabajador"></div>
+        </div>
+
+        <!-- SIDEBAR DERECHO (30%) - GAMIFICACIÓN E HITOS -->
+        <aside class="dashboard-sidebar">
+
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- DRAWER DE PERFIL -->
+<div id="modal-notificaciones" class="modal-notificaciones oculto" aria-hidden="true">
+  <div class="modal-notificaciones-contenido" role="dialog" aria-modal="true" aria-labelledby="notificaciones-titulo" aria-describedby="notificaciones-resumen">
+    <div class="modal-notificaciones-header">
+      <div><h3 id="notificaciones-titulo">Notificaciones</h3><p id="notificaciones-resumen">Novedades de tus cursos</p></div>
+      <button class="btn btn-texto modal-notificaciones-close" type="button" aria-label="Cerrar notificaciones"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div id="lista-notificaciones" class="lista-notificaciones"></div>
+    <p id="notificaciones-error" role="alert"></p>
+    <div class="notificaciones-footer"><span id="notificaciones-estado" role="status" aria-live="polite">Novedades de tu aprendizaje</span><button type="button" id="btn-quitar-todas-notificaciones">Quitar todas</button></div>
+  </div>
+</div>
+
+<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<div class="fondo-drawer" id="fondo-drawer"></div>
+<aside class="drawer-perfil" id="drawer-perfil">
+  <div class="drawer-cabecera">
+    <div>
+      <div class="avatar grande" id="avatar-drawer">--</div>
+      <div class="nombre-completo" id="nombre-drawer">—</div>
+      <div class="correo" id="correo-drawer">—</div>
+    </div>
+  </div>
+  
+  <div class="drawer-cuerpo">
+    <div class="drawer-seccion">
+    </div>
+    
+    <div class="drawer-separador"></div>
+    
+    <div class="drawer-seccion">
+      <div class="titulo-seccion">Perfil</div>
+      <a href="perfil.html" class="drawer-item"><span>Insignias y certificados</span><span class="flecha">›</span></a>
+      <a href="perfil.html?tab=historial" class="drawer-item"><span>Historial de aprendizaje</span><span class="flecha">›</span></a>
+    </div>
+
+    <div class="drawer-separador"></div>
+    
+    <div class="drawer-seccion">
+      <div class="titulo-seccion">Configuración</div>
+      <a href="soporte.html" class="drawer-item"><span>Soporte</span><span class="flecha">›</span></a>
+    </div>
+  </div>
+  
+  <div class="drawer-pie">
+    <button class="btn btn-secundario btn-bloque" id="btn-cerrar-sesion">Cerrar sesión</button>
+  </div>
+</aside>
+
+<script src="../js/api.js?v=horarios-compartidos-3"></script>
+<script src="../js/menu-perfil.js"></script>
+<script src="../js/worker-dashboard.js?v=horarios-automaticos-4"></script>
+<script src="../js/dashboard-animaciones.js"></script>
+</body>
+</html>

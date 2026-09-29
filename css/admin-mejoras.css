@@ -1,0 +1,682 @@
+/* Panel administrativo: identidad, jerarquía y accesos */
+.admin-shell { background:#f4f6f8; }
+.admin-shell .admin-sidebar { width:248px; padding:24px 16px; background:#202c33; scrollbar-color: rgba(255,255,255,.18) transparent; scrollbar-width: thin; }
+.admin-shell .admin-sidebar::-webkit-scrollbar { width:6px; }
+.admin-shell .admin-sidebar::-webkit-scrollbar-track { background:transparent; }
+.admin-shell .admin-sidebar::-webkit-scrollbar-thumb { min-height:40px; border:0; border-radius:999px; background:rgba(255,255,255,.18); }
+.admin-shell .admin-sidebar::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,.32); }
+.admin-shell .admin-sidebar::-webkit-scrollbar-button { display:none; width:0; height:0; }
+.admin-shell .admin-sidebar-marca { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; margin:0 0 24px; padding:18px 16px; min-height:0; background:#fff; border-radius:12px; box-shadow:none; text-decoration:none; overflow:hidden; }
+.admin-shell .admin-logo-marco { display:block; width:174px; max-width:100%; overflow:hidden; }
+.admin-shell .logo-cicsa-sidebar { display:block; width:174px; height:auto; max-width:none; margin:0; }
+.admin-shell .admin-marca-leyenda { color:#63737e; font-size:10px; letter-spacing:.16em; font-weight:700; }
+.admin-shell .admin-nav-etiqueta { margin:18px 12px 8px; font-size:10px; letter-spacing:.1em; color:#97a6af; }
+.admin-shell .admin-sidebar nav { gap:4px; }
+.admin-shell .admin-sidebar nav a { padding:10px 12px; min-height:44px; font-size:13px; font-weight:600; border-radius:8px; }
+.admin-shell .admin-sidebar nav a > .admin-nav-icono { display:grid; place-items:center; width:24px; height:24px; padding:0; border:0; border-radius:0; background:none; flex:0 0 24px; }
+.admin-nav-icono svg { width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.admin-shell .admin-sidebar nav a.activo { background:#c62828; color:#fff; box-shadow:none; }
+.admin-shell .admin-sidebar nav a:focus-visible,.admin-shell .admin-sidebar-marca:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+.admin-shell .admin-sidebar-pie { margin-top:24px; padding:16px 12px; font-size:11px; }
+.admin-shell .topbar-admin { display:flex; align-items:center; flex-wrap:wrap; gap:16px; min-height:76px; padding:14px 28px; background:#fff; border-top:0; border-bottom:1px solid #e0e6ea; box-shadow:none; }
+.admin-shell .topbar-admin::before,.admin-shell .topbar-admin::after { display:none; }
+.admin-shell .topbar-admin-marca { min-width:0; gap:12px; }
+.admin-shell .logo-cicsa-topbar { display:none; width:132px; height:auto; max-height:none; }
+.admin-shell .topbar-admin-marca-texto span { font-size:10px; letter-spacing:.06em; }
+.admin-shell .topbar-admin-links { margin-right:auto; }
+.admin-shell .admin-breadcrumbs { font-size:13px; gap:10px; }
+.admin-shell .topbar-admin-derecha { margin-left:auto; gap:12px; }
+.admin-shell .topbar-admin-usuario { font-size:13px; }
+.admin-shell .badge-rol-admin { font-size:9px; background:#f1f4f6; color:#52636e; }
+.admin-shell .contenedor-admin { max-width:none; width:auto; padding:28px clamp(20px,3vw,44px) 48px; gap:24px; background:#f4f6f8; }
+.admin-shell .admin-encabezado { display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,340px); align-items:center; gap:28px; min-height:0; padding:30px 34px; border-radius:16px; background:linear-gradient(115deg,#24323a 0%,#24323a 70%,#ab2228 70%,#c62828 100%); box-shadow:none; }
+.admin-shell .admin-encabezado::before,.admin-shell .admin-encabezado::after { display:none; }
+.admin-shell .admin-eyebrow { font-size:10px; letter-spacing:.12em; color:#c4d0d7; margin-bottom:10px; }
+.admin-shell .admin-encabezado h1 { font-size:clamp(26px,2.6vw,36px); line-height:1.2; margin-bottom:12px; }
+.admin-shell .admin-encabezado p { font-size:14px; line-height:1.7; color:#dce4e8; max-width:580px; }
+.admin-shell .admin-acciones-rapidas { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; max-width:none; }
+.admin-shell .admin-acciones-rapidas .btn { width:100%; min-height:44px; padding:10px 12px; font-size:12px; justify-content:center; white-space:normal; }
+.admin-shell .admin-resumen-panel { padding:24px; border:1px solid #e0e6ea; border-radius:14px; box-shadow:none; }
+.admin-shell .admin-bloque-encabezado { margin-bottom:20px; }
+.admin-shell .admin-bloque-encabezado h2 { font-size:21px; }
+.admin-shell .rejilla-metricas-admin { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:100%; gap:16px; margin:0; }
+.admin-shell .metrica-admin { padding:22px; min-height:108px; border-radius:10px; background:#fafbfc; }
+.admin-shell .metrica-admin::after { display:none; }
+.admin-shell .metrica-admin-num { font-size:32px; }
+.admin-shell .metrica-admin-label { font-size:12px; }
+.admin-shell .admin-seccion { padding:26px; background:#fff; border:1px solid #e0e6ea; border-radius:14px; box-shadow:none; scroll-margin-top:104px; }
+.admin-shell #resumen-admin { scroll-margin-top:104px; }
+.admin-shell .admin-seccion > h2 { font-size:22px; }
+.admin-shell .admin-alta-panel { margin:20px 0 24px; border:1px solid #dce3e8; border-radius:12px; background:#fff; scroll-margin-top:104px; }
+.admin-shell .admin-alta-panel > summary { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 20px; cursor:pointer; list-style:none; background:#f8fafb; border-radius:12px; }
+.admin-shell .admin-alta-panel > summary::-webkit-details-marker { display:none; }
+.admin-shell .admin-alta-panel > summary strong { display:block; color:#263942; font-size:14px; }
+.admin-shell .admin-alta-panel > summary small { display:block; color:#687984; font-size:12px; margin-top:4px; }
+.admin-shell .admin-alta-indicador { color:#c62828; font-size:24px; transition:transform .2s; }
+.admin-shell .admin-alta-panel[open] > summary { border-bottom:1px solid #dce3e8; border-radius:12px 12px 0 0; }
+.admin-shell .admin-alta-panel[open] .admin-alta-indicador { transform:rotate(45deg); }
+.admin-shell .admin-alta-panel > form { margin:0; border:0; box-shadow:none; padding:20px; }
+.admin-shell .admin-alta-panel > summary:focus-visible { outline:2px solid #c62828; outline-offset:3px; }
+.admin-shell .curso-editor-acciones-fijas { position:static; }
+.admin-menu-cerrar { display:none; }
+@media(min-width:701px) {
+ .admin-shell.admin-sidebar-colapsado .admin-sidebar-marca { padding:12px 4px; margin:0 0 18px; }
+ .admin-shell.admin-sidebar-colapsado .admin-logo-marco { width:42px; max-width:none; }
+ .admin-shell.admin-sidebar-colapsado .logo-cicsa-sidebar { width:154px; height:auto; }
+ .admin-shell.admin-sidebar-colapsado .admin-marca-leyenda { display:none; }
+ .admin-shell.admin-sidebar-colapsado .logo-cicsa-topbar { display:block; }
+}
+@media(max-width:1150px) {
+ .admin-shell .topbar-admin-marca-texto { display:none; }
+ .admin-shell .badge-rol-admin { display:none; }
+ .admin-shell .admin-encabezado { grid-template-columns:1fr; }
+ .admin-shell .admin-acciones-rapidas { grid-template-columns:repeat(4,minmax(0,1fr)); }
+ .admin-shell .metrica-admin { padding:16px; gap:12px; }
+}
+@media(max-width:700px) {
+ .admin-shell .topbar-admin { padding:12px 16px; gap:10px; position:sticky; top:0; margin-left:0; }
+ .admin-shell .logo-cicsa-topbar { display:block; width:116px; }
+ .admin-shell .topbar-admin-links { display:none; }
+ .admin-shell .topbar-admin-derecha { gap:8px; }
+ .admin-shell .topbar-admin-usuario { display:none; }
+ .admin-shell .contenedor-admin { margin-left:0; padding:18px 14px 32px; width:100%; gap:18px; }
+ .admin-shell .admin-encabezado { padding:24px; gap:20px; }
+ .admin-shell .admin-acciones-rapidas { grid-template-columns:1fr 1fr; }
+ .admin-shell .rejilla-metricas-admin { grid-template-columns:1fr; gap:10px; }
+ .admin-shell .metrica-admin { min-height:88px; }
+ .admin-shell .admin-resumen-panel,.admin-shell .admin-seccion { padding:20px 16px; }
+ .admin-shell .admin-sidebar { padding-top:54px; }
+ .admin-shell .admin-menu-cerrar { display:block; position:absolute; top:12px; right:16px; width:30px; height:30px; border:1px solid #61727c; border-radius:6px; background:transparent; color:#fff; font-size:22px; }
+ .admin-shell .admin-alta-panel > summary { padding:16px; }
+ .admin-shell .admin-alta-panel > form { padding:16px; }
+}
+
+/* Perfil accesible, con carga y errores dentro de la ventana */
+body.admin-modal-abierto { overflow:hidden; }
+.perfil-trabajador-modal [hidden] { display:none !important; }
+#perfil-trabajador-estado { color:#52636e; margin:20px 0; line-height:1.6; }
+#perfil-trabajador-estado:empty { display:none; }
+#admin-toast-container { z-index:1400; }
+
+
+/* Corrección de ancho: evita que el panel administrativo se desborde horizontalmente */
+.admin-shell,
+.admin-shell * { box-sizing: border-box; }
+.admin-shell { overflow-x: hidden; }
+.admin-shell .topbar-admin,
+.admin-shell .contenedor-admin {
+  width: calc(100% - 248px);
+  max-width: none;
+  min-width: 0;
+}
+.admin-shell .contenedor-admin > *,
+.admin-shell .admin-bloque,
+.admin-shell #tutorial-admin,
+.admin-shell #form-tutorial-admin,
+.admin-shell #tutorial-admin-lista {
+  min-width: 0;
+  max-width: 100%;
+}
+.admin-shell #tutorial-admin {
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(20px, 3vw, 34px);
+}
+.admin-shell #tutorial-admin .admin-bloque-cabecera,
+.admin-shell #tutorial-admin .admin-bloque-cabecera > div {
+  min-width: 0;
+  max-width: 100%;
+}
+.admin-shell #form-tutorial-admin {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+.admin-shell #form-tutorial-admin label,
+.admin-shell #form-tutorial-admin input,
+.admin-shell #form-tutorial-admin select,
+.admin-shell #form-tutorial-admin textarea,
+.admin-shell #form-tutorial-admin button {
+  min-width: 0;
+  max-width: 100%;
+}
+.admin-shell #form-tutorial-admin label[style*="1/-1"] { grid-column: 1 / -1 !important; }
+.admin-shell #tutorial-admin-lista .tarjeta { overflow-wrap: anywhere; word-break: break-word; }
+@media (max-width: 700px) {
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin {
+    width: 100%;
+  }
+  .admin-shell #form-tutorial-admin { grid-template-columns: 1fr; }
+  .admin-shell #form-tutorial-admin label[style*="1/-1"] { grid-column: auto !important; }
+}
+
+
+/* Ajuste final responsive: el margen de la barra lateral no debe sumarse dos veces al ancho. */
+.admin-shell .topbar-admin,
+.admin-shell .contenedor-admin {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+.admin-shell .contenedor-admin {
+  overflow: visible;
+}
+.admin-shell #tutorial-admin {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  min-width: 0;
+}
+.admin-shell #form-tutorial-admin {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1.4fr) minmax(180px, .6fr);
+}
+.admin-shell #form-tutorial-admin label,
+.admin-shell #form-tutorial-admin input,
+.admin-shell #form-tutorial-admin select,
+.admin-shell #form-tutorial-admin textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+.admin-shell #form-tutorial-admin textarea {
+  min-height: 120px;
+  max-height: 260px;
+}
+@media (max-width: 900px) {
+  .admin-shell #form-tutorial-admin { grid-template-columns: 1fr; }
+  .admin-shell #form-tutorial-admin label[style*="1/-1"] { grid-column: auto !important; }
+}
+@media (max-width: 700px) {
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin { width: 100% !important; margin-left: 0 !important; }
+  .admin-shell #tutorial-admin { padding: 18px 14px; }
+  .admin-shell #form-tutorial-admin { gap: 14px; }
+}
+
+/* ===== Corrección definitiva de layout y formulario de tutoriales ===== */
+.admin-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@media (min-width: 701px) {
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin {
+    margin-left: 248px !important;
+    width: calc(100% - 248px) !important;
+    max-width: none !important;
+  }
+
+  .admin-shell.admin-sidebar-colapsado .topbar-admin,
+  .admin-shell.admin-sidebar-colapsado .contenedor-admin {
+    margin-left: 72px !important;
+    width: calc(100% - 72px) !important;
+  }
+}
+
+.admin-shell .contenedor-admin {
+  min-width: 0 !important;
+  padding-inline: clamp(16px, 3vw, 42px) !important;
+  overflow-x: clip !important;
+}
+
+.admin-shell #tutorial-admin {
+  width: 100% !important;
+  max-width: 1180px !important;
+  margin-inline: auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  padding: clamp(18px, 2.5vw, 30px) !important;
+}
+
+.admin-shell #tutorial-admin .admin-bloque-cabecera,
+.admin-shell #tutorial-admin .admin-bloque-cabecera h2,
+.admin-shell #tutorial-admin .admin-bloque-cabecera p {
+  max-width: 100% !important;
+  overflow-wrap: anywhere;
+}
+
+.admin-shell #form-tutorial-admin {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr) !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.admin-shell #form-tutorial-admin label {
+  min-width: 0 !important;
+  width: 100% !important;
+  overflow-wrap: anywhere;
+}
+
+.admin-shell #form-tutorial-admin label[style*="1/-1"] {
+  grid-column: 1 / -1 !important;
+}
+
+.admin-shell #form-tutorial-admin input,
+.admin-shell #form-tutorial-admin select,
+.admin-shell #form-tutorial-admin textarea {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  font-size: 14px !important;
+}
+
+.admin-shell #form-tutorial-admin textarea {
+  min-height: 104px !important;
+  height: 120px !important;
+  max-height: 220px !important;
+}
+
+.admin-shell #form-tutorial-admin .btn {
+  justify-self: start;
+  max-width: 100%;
+  white-space: normal;
+}
+
+@media (max-width: 900px) {
+  .admin-shell #form-tutorial-admin {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .admin-shell #form-tutorial-admin label[style*="1/-1"] {
+    grid-column: auto !important;
+  }
+
+  .admin-shell #form-tutorial-admin .btn {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-shell #tutorial-admin {
+    padding: 16px !important;
+    border-radius: 12px;
+  }
+}
+
+/* ===== PARCHE ESTABLE CICSA: layout sin recorte y navegación funcional ===== */
+.admin-shell,
+.admin-shell * { box-sizing: border-box; }
+.admin-shell { width: 100%; min-width: 0; overflow-x: hidden; }
+
+@media (min-width: 701px) {
+  .admin-shell .admin-sidebar {
+    width: 248px !important;
+    left: 0 !important;
+    right: auto !important;
+    transform: none !important;
+  }
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin {
+    margin-left: 248px !important;
+    width: calc(100% - 248px) !important;
+    max-width: none !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .topbar-admin,
+  .admin-shell.admin-sidebar-colapsado .contenedor-admin {
+    margin-left: 72px !important;
+    width: calc(100% - 72px) !important;
+  }
+}
+
+.admin-shell .topbar-admin,
+.admin-shell .contenedor-admin {
+  min-width: 0 !important;
+  overflow-x: visible !important;
+}
+.admin-shell .contenedor-admin {
+  padding: 28px clamp(16px, 3vw, 40px) 64px !important;
+}
+
+/* El formulario se presenta en una sola columna: evita campos interminables y cortes. */
+.admin-shell #tutorial-admin {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 24px auto !important;
+  padding: clamp(20px, 3vw, 32px) !important;
+  overflow: visible !important;
+}
+.admin-shell #form-tutorial-admin {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+}
+.admin-shell #form-tutorial-admin label,
+.admin-shell #form-tutorial-admin input,
+.admin-shell #form-tutorial-admin select,
+.admin-shell #form-tutorial-admin textarea,
+.admin-shell #form-tutorial-admin button {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+.admin-shell #form-tutorial-admin label[style*="1/-1"] { grid-column: auto !important; }
+.admin-shell #form-tutorial-admin textarea {
+  min-height: 112px !important;
+  height: 112px !important;
+  resize: vertical !important;
+}
+.admin-shell #form-tutorial-admin .btn {
+  justify-self: stretch !important;
+  margin-top: 4px;
+}
+.admin-shell #tutorial-admin-lista { max-width: 760px; margin-inline: auto; overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+  .admin-shell .admin-sidebar { width: min(86vw, 300px) !important; }
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  .admin-shell #tutorial-admin { margin: 16px 0 !important; padding: 18px 14px !important; }
+  .admin-shell #form-tutorial-admin { max-width: none !important; }
+}
+
+
+/* Corrección de navegación y ancho: evita desplazamiento horizontal accidental. */
+.admin-shell,
+.admin-shell .contenedor-admin,
+.admin-shell .topbar-admin {
+  box-sizing: border-box;
+  min-width: 0;
+}
+.admin-shell { overflow-x: hidden; }
+.admin-shell .topbar-admin {
+  max-width: 100vw;
+  flex-wrap: wrap;
+}
+.admin-shell .topbar-admin-marca,
+.admin-shell .topbar-admin-links,
+.admin-shell .topbar-admin-derecha {
+  min-width: 0;
+}
+.admin-shell .contenedor-admin > section,
+.admin-shell #tutorial-admin {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  scroll-margin-top: 110px;
+}
+.admin-shell #form-tutorial-admin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+.admin-shell #form-tutorial-admin label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.admin-shell #form-tutorial-admin input,
+.admin-shell #form-tutorial-admin select,
+.admin-shell #form-tutorial-admin textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .admin-shell #form-tutorial-admin { grid-template-columns: 1fr; }
+}
+
+
+/* =========================================================
+   CORRECCIÓN DEFINITIVA DEL LAYOUT ADMINISTRATIVO Y COLAPSADO
+   ========================================================= */
+.admin-shell {
+  display: block !important;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+}
+.admin-shell .admin-sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  z-index: 1001 !important;
+  width: 248px !important;
+  height: 100vh !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  transition: width .22s ease, transform .22s ease !important;
+}
+.admin-shell .topbar-admin,
+.admin-shell .contenedor-admin {
+  margin-left: 248px !important;
+  width: calc(100% - 248px) !important;
+  max-width: none !important;
+}
+@media (min-width: 701px) {
+  .admin-shell.admin-sidebar-colapsado .admin-sidebar {
+    width: 72px !important;
+    padding-inline: 10px !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .topbar-admin,
+  .admin-shell.admin-sidebar-colapsado .contenedor-admin {
+    margin-left: 72px !important;
+    width: calc(100% - 72px) !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .admin-sidebar-marca {
+    width: 52px !important;
+    margin-inline: auto !important;
+    padding: 10px 4px !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .admin-logo-marco {
+    width: 42px !important;
+    height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .logo-cicsa-sidebar {
+    width: 154px !important;
+    max-width: none !important;
+    margin-left: -56px !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .admin-marca-leyenda,
+  .admin-shell.admin-sidebar-colapsado .admin-nav-etiqueta,
+  .admin-shell.admin-sidebar-colapsado .admin-sidebar-pie {
+    display: none !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .admin-sidebar nav a {
+    justify-content: center !important;
+    gap: 0 !important;
+    padding-inline: 0 !important;
+    font-size: 0 !important;
+  }
+  .admin-shell.admin-sidebar-colapsado .admin-sidebar nav a > .admin-nav-icono {
+    flex: 0 0 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-shell .admin-sidebar {
+    position: fixed !important;
+    width: min(86vw, 300px) !important;
+    transform: translateX(-105%) !important;
+  }
+  .admin-shell .admin-sidebar.abierto {
+    transform: translateX(0) !important;
+  }
+  .admin-shell .topbar-admin,
+  .admin-shell .contenedor-admin,
+  .admin-shell.admin-sidebar-colapsado .topbar-admin,
+  .admin-shell.admin-sidebar-colapsado .contenedor-admin {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Lector: la vista principal ocupa todo el espacio cuando se oculta el esquema. */
+.lector-curso {
+  display: flex !important;
+  width: 100% !important;
+  min-height: 100dvh !important;
+  overflow: hidden !important;
+}
+.lector-curso .lector-sidebar {
+  flex: 0 0 310px;
+  min-width: 0;
+  overflow-y: auto;
+}
+.lector-curso .lector-contenido-main {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+}
+.lector-curso.sidebar-oculto .lector-sidebar {
+  display: none !important;
+}
+.lector-curso.sidebar-oculto .lector-separador {
+  display: none !important;
+}
+.lector-curso .lector-media-recurso {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  object-fit: contain !important;
+  background: #111 !important;
+  border-radius: 14px !important;
+}
+
+[hidden] { display: none !important; }
+
+
+/* Reporte compartido por administrador y súper administrador: ocho columnas. */
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla table {
+  min-width: 1200px;
+  width: 100%;
+  table-layout: fixed;
+}
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(1),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(1) { width: 19%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(2),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(2) { width: 11%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(3),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(3) { width: 20%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(4),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(4) { width: 7%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(5),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(5) { width: 11%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(6),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(6) { width: 10%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(7),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(7) { width: 10%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla th:nth-child(8),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(8) { width: 12%; }
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(7),
+.admin-shell #seguimiento-admin .reporte-vista-previa-tabla td:nth-child(8) {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Misma escala compacta para la campana y el listado de avisos administrativos. */
+.admin-shell .admin-campana-panel {
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  border: 1px solid #dce3e8;
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(20,30,38,.2);
+}
+.admin-shell .admin-campana-panel-head { padding: 16px 18px; border-bottom-color: #edf0f3; }
+.admin-shell .admin-campana-panel-head strong { font-size: 16px; letter-spacing: -.2px; }
+.admin-shell .admin-campana-panel-head small { font-size: 12px; color: #667784; }
+.admin-shell .admin-campana-lista { max-height: min(380px, 60dvh); overscroll-behavior: contain; }
+.admin-shell .admin-campana-item { padding: 14px 18px; gap: 12px; border-bottom-color: #edf0f3; }
+.admin-shell .admin-campana-item:last-child { border-bottom: 0; }
+.aviso-admin-svg { width: 20px; height: 20px; display: block; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.admin-shell .admin-campana-icono,
+.admin-shell .aviso-admin-lista-icono,
+.admin-shell .aviso-admin-vacio-icono {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dce5eb;
+  border-radius: 10px;
+  background: #f3f6f8;
+  color: #536b7d;
+}
+.admin-shell .admin-campana-texto strong { font-size: 13px; line-height: 1.5; }
+.admin-shell .admin-campana-texto .btn { min-height: 34px; font-size: 12px; }
+.admin-shell .admin-notificaciones { border: 1px solid #dce3e8; border-radius: 16px; }
+.admin-shell .lista-notificaciones-admin { padding: 0; margin: 0; list-style: none; }
+.admin-shell .lista-notificaciones-admin li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #e4e9ed;
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.admin-shell .lista-notificaciones-admin li.notificacion-admin-nueva {
+  background: #f8fafc;
+  border-left: 3px solid #536b7d;
+}
+.admin-shell .notificacion-admin-contenido { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.admin-shell .notificacion-admin-contenido strong { font-size: 14px; line-height: 1.5; }
+.admin-shell .notificacion-admin-contenido small { font-size: 12px; color: #667784; }
+.admin-shell .aviso-admin-vacio,
+.admin-shell .lista-notificaciones-admin li.aviso-admin-vacio {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 18px;
+  text-align: left;
+  background: #fff;
+  border: 0;
+  margin: 0;
+}
+.admin-shell .aviso-admin-vacio strong { display: block; font-size: 14px; line-height: 1.5; color: #26343e; }
+.admin-shell .aviso-admin-vacio p { margin: 4px 0 0; font-size: 12px; line-height: 1.6; color: #667784; }
+@media (max-width: 480px) {
+  .admin-shell .admin-campana-panel { position: fixed; left: 16px; right: 16px; top: 84px; width: auto; }
+  .admin-shell .lista-notificaciones-admin li:not(.aviso-admin-vacio) { flex-wrap: wrap; }
+  .admin-shell .notificacion-admin-contenido { flex-basis: calc(100% - 56px); }
+  .admin-shell .notificacion-admin-eliminar { margin-left: 52px; }
+}
+
+
+/* ===== Revisión de cursos por Súper administrador ===== */
+.aprobacion-cursos-grid{display:grid;gap:1rem;margin-top:1rem}
+.revision-curso-card{border:1px solid var(--borde,#d8dee4);border-radius:16px;background:#fff;padding:1.1rem;box-shadow:0 8px 24px rgba(15,23,42,.05);transition:box-shadow .2s ease,transform .2s ease}
+.revision-curso-card.revision-curso-destacada{box-shadow:0 0 0 3px rgba(190,24,24,.16),0 12px 30px rgba(15,23,42,.1);transform:translateY(-2px)}
+.revision-curso-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.revision-curso-cabecera h3{margin:.2rem 0 .35rem;font-size:1.18rem}
+.revision-curso-cabecera p{margin:0;color:var(--texto-secundario,#5f6b76)}
+.revision-curso-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin:1rem 0}
+.revision-curso-meta span{display:flex;flex-direction:column;gap:.2rem;padding:.7rem .8rem;border-radius:10px;background:#f7f9fb}
+.revision-curso-meta small{color:#66717c}.revision-curso-meta strong{overflow-wrap:anywhere}
+.revision-curso-acciones-superiores{display:flex;justify-content:flex-end;margin-bottom:.75rem}
+.revision-curso-comentario{display:grid;gap:.45rem}.revision-curso-comentario textarea{width:100%;resize:vertical;min-height:88px}
+.revision-curso-comentario small{color:#66717c}.revision-curso-botones{display:flex;justify-content:flex-end;gap:.65rem;margin-top:.9rem;flex-wrap:wrap}
+.revision-curso-mensaje{min-height:1.2em;margin:.5rem 0 0;color:#9f1239}
+.admin-nav-contador{margin-left:auto;min-width:1.35rem;height:1.35rem;padding:0 .35rem;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:#b91c1c;color:#fff;font-size:.72rem;font-weight:700}
+@media (max-width:900px){.revision-curso-meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.revision-curso-cabecera{flex-direction:column}.revision-curso-meta{grid-template-columns:1fr}.revision-curso-botones>*{flex:1 1 100%}}

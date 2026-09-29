@@ -1,0 +1,34 @@
+(() => {
+  const CLAVE = "cicsa_comunicados";
+  const maximo = 3;
+  const form = document.getElementById("form-comunicado");
+  if (!form) return;
+  const $ = id => document.getElementById(id);
+  const estado = $("comunicado-admin-estado");
+  const lista = $("comunicados-admin-lista");
+  const rol = sesion.activa() ? sesion.rol() : null;
+  const autorizado = ["admin", "superadmin"].includes(rol);
+  const leer = () => { try { const v = JSON.parse(localStorage.getItem(CLAVE) || "[]"); return Array.isArray(v) ? v.slice(0, maximo) : []; } catch { return []; } };
+  const guardar = datos => localStorage.setItem(CLAVE, JSON.stringify(datos.slice(0, maximo)));
+  const escapar = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  let imagenPendiente = "";
+  const categoriaBonita = valor => ({Curso:"Convocatoria", Mantenimiento:"Aviso", Importante:"Informativo"}[valor] || valor || "Aviso");
+  const categoriaEditable = valor => ({Curso:"Convocatoria", Mantenimiento:"Aviso", Importante:"Informativo"}[valor] || valor || "Aviso");
+  const formatoFecha = valor => { if (!valor) return "Fecha no especificada"; const f = new Date(valor + (String(valor).length === 10 ? "T12:00:00" : "")); return Number.isNaN(f.getTime()) ? escapar(valor) : new Intl.DateTimeFormat("es-MX", {day:"numeric",month:"short",year:"numeric"}).format(f); };
+  function pintar() {
+    const datos = leer(); $("comunicados-contador").textContent = `${datos.length}/${maximo}`;
+    lista.innerHTML = datos.length ? datos.map(c => `<article class="comunicado-admin-item">${c.imagen ? `<img src="${c.imagen}" alt="">` : `<div class="comunicado-admin-sin-imagen"><span>ℹ</span><small>SOLO TEXTO</small></div>`}<div class="comunicado-admin-item-info"><span class="comunicado-categoria">${escapar(categoriaBonita(c.categoria))}</span><h4>${escapar(c.titulo)}</h4>${c.texto ? `<p>${escapar(c.texto)}</p>` : `<p class="campo-ayuda">Comunicado publicado solo con imagen.</p>`}<small>${formatoFecha(c.fecha)}</small><div class="comunicado-admin-item-acciones"><button type="button" class="btn btn-secundario btn-sm" data-editar="${escapar(c.id)}">Editar</button><button type="button" class="btn btn-secundario btn-sm" data-eliminar="${escapar(c.id)}">Eliminar</button></div></div></article>`).join("") : `<p class="comunicados-admin-vacio">Todavía no hay comunicados publicados.</p>`;
+    const lleno = datos.length >= maximo && !$("comunicado-id").value; $("btn-guardar-comunicado").disabled = lleno;
+    if (lleno) estado.textContent = "Ya hay 3 comunicados publicados. Elimina uno para publicar otro.";
+  }
+  function reiniciar() { form.reset(); $("comunicado-id").value=""; $("comunicado-fecha").value=new Date().toISOString().slice(0,10); imagenPendiente=""; $("btn-guardar-comunicado").textContent="Publicar comunicado"; $("btn-cancelar-comunicado").hidden=true; estado.textContent=""; pintar(); }
+  if (!autorizado) { form.hidden=true; estado.textContent="Solo el administrador y el superadministrador pueden gestionar comunicados."; }
+  $("comunicado-fecha").value = new Date().toISOString().slice(0,10);
+  $("comunicado-imagen").addEventListener("change", async e => { const archivo=e.target.files?.[0]; imagenPendiente=""; if (!archivo) return; if (!archivo.type.startsWith("image/")) { estado.textContent="Selecciona un archivo de imagen válido."; e.target.value=""; return; } if (archivo.size > 12*1024*1024) { estado.textContent="La imagen debe pesar menos de 12 MB."; e.target.value=""; return; } try { imagenPendiente=await comprimirImagen(archivo); estado.textContent="Imagen lista para publicar."; } catch { estado.textContent="No se pudo procesar la imagen. Prueba con otra."; } });
+  function comprimirImagen(file) { return new Promise((resolve,reject) => { const img=new Image(); const url=URL.createObjectURL(file); img.onload=()=>{ const escala=Math.min(1,1400/Math.max(img.width,img.height)); const canvas=document.createElement("canvas"); canvas.width=Math.max(1,Math.round(img.width*escala)); canvas.height=Math.max(1,Math.round(img.height*escala)); const ctx=canvas.getContext("2d"); ctx.drawImage(img,0,0,canvas.width,canvas.height); URL.revokeObjectURL(url); resolve(canvas.toDataURL("image/jpeg",0.78)); }; img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Imagen inválida"));}; img.src=url; }); }
+  form.addEventListener("submit", e => { e.preventDefault(); if (!autorizado) return; const datos=leer(); const id=$("comunicado-id").value; const existente=datos.find(c=>String(c.id)===id); if (!existente && datos.length>=maximo) { estado.textContent="Solo puedes tener 3 comunicados publicados. Elimina uno antes de agregar otro."; return; } const item={id:id || `com-${Date.now()}`, titulo:$("comunicado-titulo").value.trim(), categoria:$("comunicado-categoria").value, fecha:$("comunicado-fecha").value, texto:$("comunicado-texto").value.trim(), imagen:imagenPendiente || existente?.imagen || "", creado:existente?.creado || new Date().toISOString(), actualizado:new Date().toISOString()}; if (!item.titulo || !item.fecha || (!item.texto && !item.imagen)) { estado.textContent="Completa el título y la fecha, y agrega texto o una imagen."; return; } const actualizados=existente ? datos.map(c=>c.id===existente.id?item:c) : [item,...datos]; try { guardar(actualizados); estado.textContent=existente?"Comunicado actualizado.":"Comunicado publicado."; reiniciar(); } catch (err) { estado.textContent="No se pudo guardar. La imagen podría ser demasiado grande; usa una imagen más pequeña."; } });
+  lista.addEventListener("click", e => { if (!autorizado) return; const editar=e.target.closest("[data-editar]"); const eliminar=e.target.closest("[data-eliminar]"); const datos=leer(); if (editar) { const c=datos.find(x=>String(x.id)===editar.dataset.editar); if (!c) return; $("comunicado-id").value=c.id; $("comunicado-titulo").value=c.titulo; $("comunicado-categoria").value=categoriaEditable(c.categoria); $("comunicado-fecha").value=c.fecha || ""; $("comunicado-texto").value=c.texto; imagenPendiente=""; $("btn-guardar-comunicado").textContent="Guardar cambios"; $("btn-cancelar-comunicado").hidden=false; estado.textContent="Editando comunicado. Si no seleccionas otra imagen, se conservará la actual."; form.scrollIntoView({behavior:"smooth",block:"start"}); } else if (eliminar) { const c=datos.find(x=>String(x.id)===eliminar.dataset.eliminar); if (!c || !confirm(`¿Eliminar el comunicado «${c.titulo}»?`)) return; guardar(datos.filter(x=>x.id!==c.id)); if ($("comunicado-id").value===String(c.id)) reiniciar(); else {estado.textContent="Comunicado eliminado.";pintar();} } });
+  $("btn-cancelar-comunicado").addEventListener("click", reiniciar);
+  window.addEventListener("storage", e => { if (e.key===CLAVE) pintar(); });
+  pintar();
+})();

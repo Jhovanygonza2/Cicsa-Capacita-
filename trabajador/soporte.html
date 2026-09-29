@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CICSA Capacita — Soporte</title>
+<link rel="stylesheet" href="../css/styles.css"><link rel="stylesheet" href="../css/soporte.css">
+</head>
+<body class="soporte-pagina">
+<header class="soporte-barra">
+  <a id="soporte-volver" href="dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6-6 6 6 6M4 12h16"/></svg><span id="soporte-volver-texto">Mi aprendizaje</span></a>
+  <a class="soporte-ayuda-link" href="tutorial.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v15M3 4h4a6 6 0 0 1 5 2 6 6 0 0 1 5-2h4v15h-4a6 6 0 0 0-5 2 6 6 0 0 0-5-2H3Z"/></svg><span>Ayuda y tutoriales</span></a>
+  <img src="../assets/cicsa-logo.png" alt="CICSA" width="1071" height="286">
+</header>
+<main class="soporte-contenido">
+  <header class="soporte-presentacion">
+    <div class="soporte-presentacion-icono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H2v6h4v-6H4Zm16 0h2v6h-4v-6h2ZM20 18v3h-6"/></svg></div>
+    <div><span class="soporte-etiqueta">ESTAMOS PARA AYUDARTE</span><h1>Centro de soporte</h1><p>Cuéntanos qué necesitas. Aquí podrás seguir tu solicitud y consultar la respuesta.</p></div>
+  </header>
+  <div class="soporte-columnas">
+    <section class="soporte-tarjeta soporte-nueva-tarjeta" aria-labelledby="soporte-nueva">
+      <div class="soporte-seccion-cabecera"><span class="soporte-seccion-icono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11a8 8 0 0 1-8 8H7l-5 3V11a9 9 0 0 1 19 0ZM7 9h9M7 13h6"/></svg></span><div><h2 id="soporte-nueva">Nueva solicitud</h2><p>Completa los detalles para recibir asistencia.</p></div></div>
+      <p id="soporte-identidad" class="soporte-identidad"></p>
+      <form id="form-soporte">
+        <div class="soporte-campos-fila">
+          <div class="soporte-campo"><label for="soporte-tipo">Tipo de solicitud <span aria-hidden="true">*</span></label>
+            <select id="soporte-tipo" required><option value="">Selecciona el motivo</option><option value="acceso">Problema de acceso</option><option value="password">Restablecer contraseña</option><option value="curso">Contenido o video</option><option value="evaluacion">Evaluación o examen</option><option value="certificado">Certificado</option><option value="repetir">Repetir un curso</option><option value="otro">Otro problema</option></select>
+          </div>
+          <div class="soporte-campo"><label for="soporte-curso">Curso relacionado <span>(opcional)</span></label><select id="soporte-curso"><option value="">Sin curso relacionado</option></select></div>
+        </div>
+        <div class="soporte-campo"><label for="soporte-descripcion">¿Qué ocurrió? <span aria-hidden="true">*</span></label><textarea id="soporte-descripcion" required minlength="10" maxlength="3000" rows="4" aria-describedby="soporte-descripcion-ayuda" placeholder="Describe el problema e indica en qué pantalla sucede."></textarea><small id="soporte-descripcion-ayuda">No incluyas contraseñas ni información confidencial.</small></div>
+        <div class="soporte-campo soporte-adjuntar">
+          <label for="soporte-captura"><span class="soporte-adjuntar-icono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 16V3m-5 5 5-5 5 5M4 15v6h16v-6"/></svg></span> Captura de pantalla <span>(opcional)</span></label>
+          <input id="soporte-captura" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="soporte-archivo-ayuda">
+          <small id="soporte-archivo-ayuda">PNG, JPG o WEBP · Hasta 2 MB</small>
+        </div>
+        <div class="soporte-enviar-fila"><span>Los campos con * son obligatorios.</span><button class="btn btn-primario" type="submit">Enviar solicitud <span aria-hidden="true">→</span></button></div>
+        <p id="soporte-envio" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <section class="soporte-tarjeta soporte-seguimiento-tarjeta" aria-labelledby="soporte-titulo-lista">
+      <div class="soporte-lista-cabecera"><div><h2 id="soporte-titulo-lista">Mis solicitudes</h2><p class="soporte-subtitulo">Consulta el avance y las respuestas.</p></div><button id="soporte-actualizar" class="btn btn-secundario btn-sm" type="button"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 7v5h-5M4 17v-5h5M5 7a8 8 0 0 1 13-2l2 3M4 16l2 3a8 8 0 0 0 13-2"/></svg><span>Actualizar</span></button></div>
+      <div class="soporte-resumen" aria-label="Resumen de solicitudes">
+        <div><span class="soporte-punto pendiente"></span><strong id="soporte-total-pendiente">0</strong><span>Pendientes</span></div>
+        <div><span class="soporte-punto atencion"></span><strong id="soporte-total-atencion">0</strong><span>En atención</span></div>
+        <div><span class="soporte-punto resuelto"></span><strong id="soporte-total-resuelto">0</strong><span>Resueltas</span></div>
+      </div>
+      <div class="soporte-filtrar"><label for="soporte-filtro">Mostrar</label><select id="soporte-filtro"><option value="">Todas las solicitudes</option><option value="pendiente">Pendientes</option><option value="en_atencion">En atención</option><option value="resuelto">Resueltas</option></select></div>
+      <p id="soporte-error" role="alert"></p><div id="soporte-lista" aria-live="polite" aria-busy="true">Cargando solicitudes…</div>
+      <div class="soporte-seguimiento-pie">El estado y la respuesta se actualizan en este apartado.</div>
+    </section>
+  </div>
+  <footer class="soporte-pie"><span>¿Buscas cómo usar la plataforma? <a href="tutorial.html">Consulta la guía de uso ↗</a></span><p id="soporte-demo" class="soporte-nota" hidden>Modo demo · Las solicitudes se guardan en este navegador; no se envían por correo ni se comparten entre equipos.</p></footer>
+</main>
+<script src="../js/api.js?v=horarios-compartidos-3"></script><script src="../js/soporte.js?v=2"></script>
+</body></html>

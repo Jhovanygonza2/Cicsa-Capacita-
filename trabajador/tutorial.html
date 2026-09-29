@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>CICSA Capacita — Guía de uso</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/tutorial.css">
+</head>
+<body class="tutorial-trabajador">
+  <header class="tutorial-barra">
+    <a class="tutorial-volver" href="dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6-6 6 6 6M4 12h16"/></svg><span>Mi aprendizaje</span></a>
+    <span class="tutorial-marca"><img class="tutorial-logo-cicsa" src="../assets/cicsa-logo.png" alt="CICSA" width="1071" height="286"></span>
+  </header>
+  <main class="tutorial-contenido">
+    <nav class="tutorial-ruta" aria-label="Ubicación"><a href="dashboard.html">Mi aprendizaje</a><span aria-hidden="true">/</span><span aria-current="page">Guía de uso</span></nav>
+    <section class="tutorial-portada" aria-labelledby="tutorial-titulo">
+      <div>
+        <span class="tutorial-etiqueta">CENTRO DE AYUDA</span>
+        <h1 id="tutorial-titulo">Tu capacitación,<br>paso a paso.</h1>
+        <p>Conoce cómo comenzar tus cursos, avanzar por los módulos y consultar tus resultados.</p>
+        <a class="btn tutorial-accion" href="#tutorial-materiales">Consultar materiales <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="tutorial-portada-icono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H3V4Zm9 3a3 3 0 0 1 3-3h6v15h-5a4 4 0 0 0-4 2"/></svg><span>GUÍA DEL TRABAJADOR</span></div>
+    </section>
+    <section class="tutorial-primeros-pasos" aria-labelledby="tutorial-pasos-titulo">
+      <div class="tutorial-seccion-titulo"><h2 id="tutorial-pasos-titulo">Empieza por aquí</h2><span>Tres pasos para avanzar</span></div>
+      <ol class="tutorial-pasos">
+        <li><span class="tutorial-paso-numero">01</span><h3>Abre tu curso</h3><p>En Mi aprendizaje encontrarás los cursos asignados. Revisa su horario y aprueba la evaluación del curso.</p></li>
+        <li><span class="tutorial-paso-numero">02</span><h3>Completa los módulos</h3><p>Consulta cada lección y pulsa Siguiente para guardar tu avance. Termina antes de la hora de cierre.</p></li>
+        <li><span class="tutorial-paso-numero">03</span><h3>Presenta el examen</h3><p>Al completar las lecciones, continúa al examen final. Consulta tus resultados y logros en Mi perfil.</p></li>
+      </ol>
+    </section>
+    <section id="tutorial-materiales" aria-labelledby="tutorial-materiales-titulo">
+      <div class="tutorial-seccion-titulo"><div><h2 id="tutorial-materiales-titulo">Materiales de apoyo</h2><p>Videos, documentos y enlaces publicados por administración.</p></div><span id="tutorial-total" class="tutorial-total">Cargando…</span></div>
+      <div id="tutorial-lista" class="tutorial-lista" aria-live="polite" aria-busy="true">Cargando materiales…</div>
+    </section>
+    <footer class="tutorial-pie"><p>¿Tienes un problema o necesitas repetir un curso? <a href="soporte.html">Contactar a soporte</a>.</p><a href="dashboard.html">Volver a mis cursos <span aria-hidden="true">→</span></a></footer>
+  </main>
+  <script src="../js/api.js?v=horarios-compartidos-3"></script>
+  <script src="../js/tutoriales.js"></script>
+  <script src="../js/tutorial.js?v=instructor-aislado-3"></script>
+</body>
+</html>

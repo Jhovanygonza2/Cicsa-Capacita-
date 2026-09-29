@@ -1,0 +1,287 @@
+/* Lector: lectura clara y navegación persistente */
+.lector-curso { --texto-blanco:#25343c; --borde-oscuro:#dce3e7; color:var(--gris-texto); background:#f3f5f7; overflow:hidden; }
+.lector-curso .lector-contenido-main { background:#f3f5f7; min-height:0; }
+.lector-curso .lector-sidebar { background:#fff; color:var(--gris-texto); border-right:1px solid #dce3e7; width:310px; flex-basis:310px; }
+.lector-curso .lector-cabecera,.lector-curso .lector-tabs { background:#fff; }
+.lector-curso .lector-cabecera { min-height:80px; margin:0; padding:18px; border-bottom:1px solid #e5e9ec; }
+.lector-curso .lector-cabecera::before,.lector-curso .lector-sidebar::after { display:none; }
+.lector-curso .lector-titulo,.lector-curso .lector-tab { color:var(--gris-texto); }
+.lector-curso .lector-volver { background:#f3f5f7; color:var(--gris-texto); border:1px solid #dce3e7; }
+.lector-curso .lector-tabs { padding:8px 18px 0; }
+.lector-curso .lector-tab { padding:14px 0; font-size:13px; }
+.lector-curso .lector-esquema { padding:16px; }
+.lector-curso .lector-buscador { background:#f6f8fa; border:1px solid #dce3e7; margin:0 0 12px; }
+.lector-curso .lector-buscador input { color:var(--gris-texto); font-size:13px; }
+.lector-curso .lector-buscador input::placeholder { color:#6a7782; }
+.lector-curso .lector-resumen { color:#65747e; font-size:12px; margin:12px 0 20px; }
+.lector-curso .modulo { border-bottom:1px solid #e5e9ec; padding-bottom:12px; margin-bottom:14px; }
+.lector-curso .modulo-titulo { color:var(--gris-texto); background:transparent; padding:8px 0; }
+.lector-curso .modulo-titulo-texto strong { font-size:13px; font-weight:700; line-height:1.5; }
+.lector-curso .modulo-progreso { color:#65747e; }
+.lector-curso .modulo-contenido,.lector-curso .tema-grupo { background:transparent; border:0; }
+.lector-curso .tema-grupo-titulo,.lector-curso .tema-grupo.expandido .tema-grupo-titulo { background:#f4f6f8; color:#46555f; font-size:12px; border-radius:8px; }
+.lector-curso .subtemas-lista { padding:6px 0 0 8px; margin:0; }
+.lector-curso .subtemas-lista .tema,.lector-curso .tema { color:#52616c; font-size:13px; border:0; border-radius:8px; margin:3px 0; padding:12px; line-height:1.5; }
+.lector-curso .subtemas-lista .tema.activo,.lector-curso .tema.activo { background:#fff5f5; color:#a61e24; border-left:3px solid #c62828; }
+.lector-curso .tema:hover { background:#f3f5f7; }
+.lector-curso .tema:focus-visible { outline:2px solid #c62828; outline-offset:2px; }
+.lector-curso [hidden] { display:none !important; }
+.lector-curso .lector-topbar { background:#fff; color:var(--gris-texto); border-bottom:1px solid #e5e9ec; padding:16px 24px; min-height:76px; flex-wrap:wrap; gap:10px; }
+.lector-curso .lector-miga,.lector-curso .lector-progreso-label { color:#65747e; }
+.lector-curso .lector-miga strong { color:var(--gris-texto); }
+.lector-curso .lector-topbar-meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.lector-curso .lector-curso-datos { font-size:11px; }
+.lector-curso .lector-progreso-barra { height:4px; flex-shrink:0; background:#e5e9ec; }
+.lector-curso .lector-viewport { min-height:0; overflow:hidden; }
+.lector-curso .lector-viewport .lector-contenido { padding:clamp(18px,3vw,40px); display:block; background:transparent; color:var(--gris-texto); }
+.lector-curso .lector-slide { max-width:1120px; background:#fff; border:1px solid #e1e6ea; border-radius:18px; box-shadow:0 8px 30px #25343c08; padding:clamp(22px,3vw,42px); color:var(--gris-texto); }
+.lector-curso .lector-slide .lector-leccion-cabecera { min-height:0; height:auto; padding:0 0 24px; margin:0 0 28px; border-bottom:1px solid #e8ecef; }
+.lector-curso .lector-leccion-cabecera::after { display:none; }
+.lector-curso .lector-slide .lector-leccion-indice { color:var(--verde-primario); font-size:11px; letter-spacing:.1em; }
+.lector-curso .lector-slide .lector-leccion-cabecera h1 { color:#23333d; font-size:clamp(24px,2.6vw,36px); line-height:1.25; margin-top:12px; }
+.lector-curso .lector-slide-grid { align-items:start; gap:32px; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); }
+.lector-curso .lector-slide-texto .lector-informacion-subtema { color:#46555f; font-size:16px; line-height:1.85; font-weight:400; white-space:pre-line; margin:0; }
+.lector-curso .lector-slide-media { flex-direction:column; gap:20px; min-height:0; }
+.lector-curso .lector-slide-media .lector-media-recurso { height:auto; max-height:480px; aspect-ratio:auto; object-fit:contain; border-radius:12px; background:#f3f5f7; box-shadow:none; transform:none; }
+.lector-curso .lector-portada-curso { width:100%; min-height:280px; aspect-ratio:4/3; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:28px; box-sizing:border-box; border:1px solid #e1e6ea; border-radius:12px; background:linear-gradient(145deg,#f3f5f7,#fff0ef); text-align:center; }
+.lector-curso .lector-portada-curso svg { width:80px; height:80px; fill:none; stroke:#c62828; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.lector-curso .lector-portada-curso span { color:#65747e; font-size:13px; }
+.lector-curso .lector-portada-curso strong { color:var(--gris-texto); font-size:24px; line-height:1.35; overflow-wrap:anywhere; }
+.lector-curso .lector-slide-texto,.lector-curso .lector-slide-media { min-width:0; }
+.lector-curso .lector-media-nivel { width:100%; }
+.lector-curso .lector-media-nivel img,.lector-curso .lector-media-nivel video { max-width:100%; height:auto; object-fit:contain; border-radius:10px; }
+.lector-curso .lector-media-nivel-etiqueta { color:#65747e; font-size:12px; margin-bottom:8px; }
+.lector-curso .lector-pasos { background:#fff; border-top:1px solid #dce3e7; padding:16px 24px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; flex-shrink:0; }
+.lector-curso .lector-pasos-info { display:grid; gap:4px; margin-right:auto; }
+.lector-curso .lector-progreso-navegacion { position:static; background:none; border:0; padding:0; color:var(--gris-texto); font-size:13px; }
+.lector-curso #lector-estado-leccion { color:#65747e; font-size:12px; }
+.lector-curso .lector-pasos-acciones { display:flex; gap:8px; flex-wrap:wrap; }
+.lector-curso .lector-pasos .lector-nav-btn { position:static; transform:none; width:auto; height:42px; min-width:80px; padding:10px 16px; border:1px solid #dce3e7; border-radius:8px; background:#fff; box-shadow:none; color:#354651; font-size:13px; }
+.lector-curso .lector-pasos .lector-nav-btn:hover:not(:disabled) { background:#f6f7f9; transform:none; box-shadow:none; }
+.lector-curso .lector-pasos .btn { min-height:42px; font-size:13px; }
+.lector-curso #lector-aviso-guardado { color:var(--verde-primario); font-size:13px; margin:0; }
+.lector-curso #lector-aviso-guardado:empty { display:none; }
+.lector-curso .lector-mensaje,.lector-curso .lector-aviso-examen { background:#fff; padding:32px; border:1px solid #dce3e7; border-radius:16px; }
+.lector-curso .lector-contenido h1,.lector-curso .lector-contenido p { color:var(--gris-texto); }
+.lector-curso #form-evaluacion { max-width:850px; }
+.lector-curso #form-evaluacion > div { background:#fff; border:1px solid #dce3e7; border-radius:12px; padding:24px; }
+.lector-curso #form-evaluacion label { color:#354651 !important; background:#f5f7f9 !important; }
+.lector-curso #form-evaluacion label:has(input:checked) { background:#fff5f5 !important; outline:1px solid #c62828; }
+.lector-curso #form-evaluacion input { accent-color:#c62828; }
+@media(max-width:1100px) { .lector-curso .lector-slide-grid { grid-template-columns:1fr; } .lector-curso .lector-topbar-meta .lector-curso-datos { display:none; } }
+@media(max-width:760px) {
+ .lector-curso .lector-sidebar { flex-basis:auto; width:min(86vw,320px); }
+ .lector-curso .lector-contenido-main { height:100dvh; }
+ .lector-curso .lector-topbar { padding:12px; }
+ .lector-curso .lector-pasos { padding:12px; gap:10px; }
+ .lector-curso .lector-pasos-info { width:100%; }
+ .lector-curso .lector-pasos-acciones { width:100%; }
+ .lector-curso .lector-pasos-acciones > button { flex:1; }
+ .lector-curso .lector-viewport .lector-contenido { padding:12px; }
+ .lector-curso .lector-slide { padding:20px; }
+}
+
+/* Contraste del esquema y del lector con el menu plegado */
+.lector-curso .lector-tab.activo,
+.lector-curso .modulo-titulo-texto strong,
+.lector-curso .lector-topbar-meta strong { color:var(--gris-texto); }
+.lector-curso .modulo-titulo-texto strong { white-space:normal; overflow:visible; }
+.lector-curso .modulo-barra-fila .modulo-progreso,
+.lector-curso .tema-grupo-contador { color:#65747e; }
+.lector-curso .modulo-barra-fila .modulo-barra { background:#e8edf0; box-shadow:none; }
+.lector-curso .temas-contenedor { background:transparent; }
+.lector-curso .lector-titulo,.lector-curso .lector-tab,
+.lector-curso .modulo-titulo,.lector-curso .tema-grupo-titulo,
+.lector-curso .subtemas-lista .tema { text-shadow:none; }
+.lector-curso .tema-grupo.expandido .tema-grupo-titulo { border-bottom:0; }
+.lector-curso .modulo-chevron { color:var(--verde-primario); background:#fff5f5; }
+.lector-curso.sidebar-oculto .lector-contenido-main,
+.lector-curso.sidebar-oculto .lector-contenido { background:#f3f5f7; }
+.lector-curso.sidebar-oculto .lector-topbar { background:#fff; border-color:#e5e9ec; }
+.lector-curso .lector-certificado { color:var(--gris-texto); background:#fff; border:1px solid #dce3e7; }
+.lector-curso #evaluacion-error { color:var(--verde-primario); }
+/* El control del menu permanece dentro de la cabecera en movil */
+.lector-curso .lector-sidebar-toggle,
+.lector-curso.sidebar-oculto .lector-sidebar-toggle {
+  position:static; inset:auto; transform:none; flex:0 0 34px;
+  width:34px; height:34px; margin:0; box-shadow:none;
+  background:#fff; color:var(--verde-primario); border:1px solid #dce3e7;
+}
+.lector-curso .lector-pasos .lector-progreso-navegacion { text-align:left; }
+@media(max-width:760px) {
+  .lector-curso .lector-miga { gap:8px; width:100%; flex-basis:100%; }
+  .lector-curso .lector-topbar-meta { width:100%; justify-content:flex-end; }
+  .lector-curso .lector-progreso-label { display:inline; font-size:11px; }
+}
+.lector-curso .lector-topbar { flex-direction:row; flex-shrink:0; height:auto; }
+
+.lector-tiempo-restante{font-variant-numeric:tabular-nums;font-weight:700;color:#b91c1c;background:#fff1f2;border:1px solid #fecdd3;border-radius:999px;padding:5px 10px;white-space:nowrap}.lector-media-recurso,.lector-media-nivel-recursos video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;height:auto;object-fit:contain;background:#111;border-radius:14px}.lector-media-nivel-recursos{display:grid;gap:16px}.lector-media-nivel-recursos img{max-width:100%;height:auto;object-fit:contain;border-radius:14px}.lector-tiempo-restante.agotado{background:#fee2e2;color:#991b1b}.tiempo-card{font-variant-numeric:tabular-nums;font-weight:700}
+
+
+/* Rediseño de lecciones: indicadores simétricos y títulos limpios */
+.lector-curso .subtemas-lista { padding: 10px 0 8px 10px; }
+.lector-curso .subtemas-lista .tema {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  margin: 6px 0;
+  padding: 10px 12px 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: #fff;
+  color: #46555f;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.lector-curso .subtemas-lista .tema:hover { background:#f8fafb; border-color:#e3e9ed; transform:translateX(2px); }
+.lector-curso .subtemas-lista .tema.activo {
+  background: linear-gradient(90deg,#fff0ef 0%,#fff8f7 100%);
+  border: 1px solid #ffd4d1;
+  border-left: 4px solid #c62828;
+  color: #a61e24;
+  padding-left: 11px;
+}
+.lector-curso .tema-nombre { flex:1; min-width:0; font-size:13px; line-height:1.45; font-weight:500; }
+.lector-curso .tema-indicador {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  flex:0 0 28px;
+  border-radius:50%;
+  border:2px solid #cbd5dc;
+  background:#fff;
+  color:#fff;
+  font-size:15px;
+  font-weight:800;
+  line-height:1;
+  box-sizing:border-box;
+}
+.lector-curso .tema-indicador.completo { background:#c62828; border-color:var(--verde-primario); box-shadow:0 0 0 4px #fff0ef; }
+.lector-curso .tema-indicador.pendiente::after { content:""; width:7px; height:7px; border-radius:50%; background:#cbd5dc; }
+.lector-curso .tema-grupo-nombre { display:flex; align-items:center; gap:10px; min-width:0; }
+.lector-curso .tema-grupo-nombre .tema-icono { flex:0 0 28px; }
+
+/* Cabecera del curso: duración y temporizador separados y legibles */
+.lector-curso .lector-curso-datos { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.lector-curso .lector-curso-datos > span { display:inline-flex; align-items:center; min-height:30px; padding:5px 10px; border:1px solid #e1e7eb; border-radius:8px; background:#f8fafb; }
+.lector-curso .lector-curso-datos #lector-tiempo-restante { background:#fff5f5; border-color:#ffc8c4; color:var(--verde-primario); border-radius:10px; }
+
+@media (max-width:760px) {
+  .lector-curso .subtemas-lista .tema { min-height:54px; padding:9px 10px; }
+  .lector-curso .tema-nombre { font-size:12px; }
+  .lector-curso .tema-indicador { width:26px; height:26px; flex-basis:26px; }
+}
+
+
+/* Evaluaciones y examen: presentación empresarial */
+.lector-curso .evaluacion-encabezado { background:#fff; border:1px solid #dce3e7; border-radius:16px; padding:26px 30px; margin-bottom:20px; box-shadow:0 8px 24px rgba(37,52,60,.05); }
+.lector-curso .evaluacion-encabezado h1 { margin:10px 0 8px; color:var(--gris-texto); font-size:clamp(25px,3vw,36px); }
+.lector-curso .evaluacion-encabezado p { margin:0; color:#65747e; }
+.lector-curso .form-evaluacion-cicsa { display:grid; gap:16px; max-width:900px; }
+.lector-curso .evaluacion-pregunta { background:#fff; border:1px solid #dce3e7; border-radius:14px; padding:22px; box-shadow:0 5px 18px rgba(37,52,60,.04); }
+.lector-curso .evaluacion-pregunta-titulo { display:flex; align-items:flex-start; gap:12px; margin:0 0 18px; color:var(--gris-texto); font-size:16px; font-weight:700; line-height:1.5; }
+.lector-curso .evaluacion-pregunta-titulo span { display:grid; place-items:center; min-width:30px; height:30px; border-radius:50%; background:#fff5f5; color:var(--verde-primario); font-size:13px; }
+.lector-curso .evaluacion-opciones { display:grid; gap:10px; }
+.lector-curso .evaluacion-opcion { display:flex; align-items:center; gap:10px; padding:13px 15px; border:1px solid #e0e6ea; border-radius:10px; background:#f8fafb !important; color:#354651 !important; cursor:pointer; transition:background .15s,border-color .15s; }
+.lector-curso .evaluacion-opcion:hover { border-color:var(--verde-primario); background:#fffafa !important; }
+.lector-curso .evaluacion-opcion:has(input:checked) { border-color:var(--verde-primario); background:#fff5f5 !important; box-shadow:0 0 0 1px var(--verde-primario); }
+.lector-curso .evaluacion-opcion input { flex:0 0 auto; }
+.lector-curso .lector-slide-media:has(.lector-media-recurso) { display:flex; }
+.lector-curso .lector-slide-media:not(:has(.lector-media-recurso)) { display:none; }
+.lector-curso .lector-slide-grid:has(.lector-slide-media:not(:has(.lector-media-recurso))) { grid-template-columns:1fr; }
+
+/* ===== Rediseño premium de evaluaciones CICSA ===== */
+.lector-curso .evaluacion-hero{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;margin:8px 0 22px;padding:26px 28px;border:1px solid #e3e9ed;border-radius:22px;background:linear-gradient(135deg,#ffffff,#f5f8fa);box-shadow:0 12px 30px rgba(31,48,59,.07)}
+.lector-curso .evaluacion-hero-icon{display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:var(--verde-primario);color:#fff;font-size:29px;box-shadow:0 8px 18px rgba(37,52,60,.18)}
+.lector-curso .evaluacion-etiqueta{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--verde-primario)}
+.lector-curso .evaluacion-hero h1{margin:5px 0;color:var(--gris-texto);font-size:clamp(26px,3vw,38px)}
+.lector-curso .evaluacion-hero p{margin:0;color:#65747e}
+.lector-curso .evaluacion-meta{display:grid;gap:9px;justify-items:end;font-size:12px;font-weight:700;color:#52636e}
+.lector-curso .evaluacion-meta span{padding:9px 12px;border-radius:999px;background:#edf2f5}
+.lector-curso .evaluacion-instrucciones{display:flex;flex-direction:column;gap:4px;padding:16px 19px;border-left:4px solid var(--verde-primario);border-radius:12px;background:#fff8f7;color:#52636e}
+.lector-curso .evaluacion-instrucciones strong{color:var(--gris-texto)}
+.lector-curso .evaluacion-pregunta{padding:25px!important;border-radius:18px!important}
+.lector-curso .evaluacion-pregunta-superior{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.lector-curso .evaluacion-numero{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--verde-primario);color:#fff;font-size:13px;font-weight:800}
+.lector-curso .evaluacion-contador{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#8a969d;font-weight:800}
+.lector-curso .evaluacion-pregunta-titulo{display:block!important;font-size:18px!important;margin-bottom:20px!important}
+.lector-curso .evaluacion-opcion{min-height:54px!important;padding:12px 14px!important}
+.lector-curso .evaluacion-opcion .opcion-letra{display:grid;place-items:center;flex:0 0 30px;height:30px;border:1px solid #d5dfe5;border-radius:9px;background:#fff;font-size:12px;font-weight:800;color:#52636e}
+.lector-curso .evaluacion-opcion:has(input:checked) .opcion-letra{background:#b32429;color:#fff;border-color:var(--verde-primario)}
+.lector-curso .evaluacion-final-acciones{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0 6px;color:#7a8992;font-size:12px}
+.lector-curso .evaluacion-final-acciones .btn{padding:14px 22px;border-radius:12px;font-weight:800}
+@media(max-width:700px){.lector-curso .evaluacion-hero{grid-template-columns:auto 1fr;padding:20px}.lector-curso .evaluacion-meta{grid-column:1/-1;justify-items:start;display:flex;flex-wrap:wrap}.lector-curso .evaluacion-final-acciones{align-items:stretch;flex-direction:column}.lector-curso .evaluacion-final-acciones .btn{width:100%}}
+
+/* Resultado de evaluación: diseño consistente con la paleta original CICSA */
+.lector-curso .resultado-evaluacion-cicsa{background:var(--blanco);border:1px solid var(--gris-borde);border-radius:20px;padding:36px 28px;text-align:center;box-shadow:0 10px 28px rgba(42,49,53,.07)}
+.lector-curso .resultado-evaluacion-cicsa .resultado-nota{font-size:clamp(42px,7vw,68px);font-weight:800;color:var(--verde-primario);line-height:1;margin:10px 0}
+.lector-curso .resultado-evaluacion-cicsa .resultado-icono{width:68px;height:68px;display:grid;place-items:center;margin:0 auto 14px;border-radius:50%;background:#fff5f5;color:var(--verde-primario);font-size:32px}
+.lector-curso .resultado-evaluacion-cicsa .resultado-detalle{color:var(--gris-suave);line-height:1.7;max-width:560px;margin:12px auto}
+.lector-curso .resultado-evaluacion-cicsa .resultado-acciones{display:flex;gap:var(--gap-md);justify-content:center;flex-wrap:wrap;margin-top:var(--gap-xl)}
+
+
+/* Compatibilidad: aplicar el mismo diseño a todos los perfiles y estados */
+.lector-curso .lector-contenido-main .lector-aviso-examen,
+.lector-curso .lector-contenido-main .lector-mensaje,
+.lector-curso .lector-contenido-main .lector-introduccion-curso {
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  box-sizing: border-box;
+}
+.lector-curso .lector-aviso-examen h1,
+.lector-curso .lector-mensaje h1,
+.lector-curso .lector-introduccion-curso h2 {
+  color: var(--gris-texto) !important;
+  line-height: 1.25;
+}
+.lector-curso .lector-aviso-examen p,
+.lector-curso .lector-mensaje p,
+.lector-curso .lector-introduccion-curso p {
+  color: #65747e !important;
+  line-height: 1.7;
+}
+.lector-curso .lector-introduccion-curso {
+  background: #fff;
+  border: 1px solid #dce3e7;
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 24px rgba(37,52,60,.05);
+}
+.lector-curso .lector-introduccion-datos {
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;
+}
+.lector-curso .lector-introduccion-datos span {
+  padding:10px 12px; background:#f3f5f7; border:1px solid #e1e6ea; border-radius:10px; color:#52636e; font-size:12px;
+}
+.lector-curso .lector-introduccion-nota {
+  margin-top:18px; padding:14px 16px; border-left:4px solid #c62828; background:#fff5f5; border-radius:8px;
+}
+
+/* Pantalla individual de preguntas: diseño original CICSA (rojo, blanco y gris) */
+.lector-curso .evaluacion-pantalla-cicsa{max-width:1050px;margin:18px auto 30px;background:#fff;border:1px solid #d9e1e6;border-radius:22px;padding:32px;box-shadow:0 12px 32px rgba(42,49,53,.07)}
+.lector-curso .evaluacion-pantalla-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.lector-curso .evaluacion-pantalla-identidad{display:flex;align-items:center;gap:14px}
+.lector-curso .evaluacion-pantalla-cicsa .evaluacion-numero{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:#c9252d;color:#fff;font-size:15px;font-weight:800}
+.lector-curso .evaluacion-pantalla-cicsa .evaluacion-contador{font-size:14px;letter-spacing:1px;font-weight:800;color:#87939b}
+.lector-curso .evaluacion-porcentaje{font-size:14px;font-weight:800;color:#c9252d}
+.lector-curso .evaluacion-barra{height:12px;background:#e8edf0;border-radius:999px;overflow:hidden;margin-bottom:34px}
+.lector-curso .evaluacion-barra span{display:block;height:100%;background:#c9252d;border-radius:999px;transition:width .2s ease}
+.lector-curso .evaluacion-pantalla-cicsa .evaluacion-pregunta-titulo{display:block!important;margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important;color:#172b3a!important;font-weight:800!important}
+.lector-curso .evaluacion-form-pantalla .evaluacion-opciones{display:grid;gap:12px}
+.lector-curso .evaluacion-form-pantalla .evaluacion-opcion{display:flex;align-items:center;gap:14px;min-height:60px!important;padding:14px 18px!important;border:1px solid #d7e0e6!important;border-radius:12px!important;background:#f7f9fa!important;color:#253746!important;font-size:15px!important;box-sizing:border-box}
+.lector-curso .evaluacion-form-pantalla .evaluacion-opcion:hover,.lector-curso .evaluacion-form-pantalla .evaluacion-opcion.seleccionada{border-color:#c9252d!important;background:#fff2f2!important;box-shadow:0 0 0 1px #c9252d}
+.lector-curso .evaluacion-form-pantalla .evaluacion-opcion input{margin:0;accent-color:#c9252d;width:19px;height:19px;flex:0 0 auto}
+.lector-curso .evaluacion-form-pantalla .opcion-letra{display:grid;place-items:center;width:32px;height:32px;border:1px solid #d4dfe5;border-radius:8px;background:#fff;color:#52636e;font-weight:800;flex:0 0 auto}
+.lector-curso .evaluacion-form-pantalla .seleccionada .opcion-letra{background:#c9252d;color:#fff;border-color:#c9252d}
+.lector-curso .evaluacion-form-pantalla .opcion-texto{flex:1;line-height:1.45}
+.lector-curso .evaluacion-navegacion-cicsa{display:flex;justify-content:space-between;gap:16px;margin-top:34px}
+.lector-curso .evaluacion-navegacion-cicsa .btn{min-width:150px;padding:14px 22px;border-radius:10px;font-weight:800}
+.lector-curso .evaluacion-navegacion-cicsa .btn:disabled{opacity:.45;cursor:not-allowed}
+.lector-curso #evaluacion-error{color:#c9252d;font-weight:700;min-height:20px;margin:14px 0 0}
+@media(max-width:700px){.lector-curso .evaluacion-pantalla-cicsa{padding:20px;border-radius:16px}.lector-curso .evaluacion-pantalla-cicsa .evaluacion-pregunta-titulo{font-size:20px!important}.lector-curso .evaluacion-navegacion-cicsa{flex-direction:column}.lector-curso .evaluacion-navegacion-cicsa .btn{width:100%}}
+
+.lector-ayuda-soporte { display:flex; gap:18px; padding:16px; border-top:1px solid rgba(128,144,155,.25); }
+.lector-ayuda-soporte a { color:inherit; font-size:13px; text-decoration:underline; text-underline-offset:3px; }

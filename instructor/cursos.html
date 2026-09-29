@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>CICSA Capacita — Cursos del instructor</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="../css/admin-mejoras.css?v=revision-cursos-superadmin-1" />
+<style>
+  .curso-admin-asignacion { display:none !important; }
+</style>
+</head>
+<body>
+<div class="pagina-admin admin-shell">
+  <aside class="admin-sidebar" id="admin-sidebar" aria-label="Navegación del instructor">
+    <a class="admin-sidebar-marca" href="../trabajador/inicio.html" aria-label="CICSA · Ir a Inicio">
+      <span class="admin-logo-marco"><img src="../assets/cicsa-logo.png" alt="CICSA" class="logo-cicsa-sidebar" width="1071" height="286"></span>
+      <span class="admin-marca-leyenda">INSTRUCTOR</span>
+    </a>
+    <button id="btn-cerrar-menu-admin" class="admin-menu-cerrar" type="button" aria-label="Cerrar navegación">×</button>
+    <nav>
+      <span class="admin-nav-etiqueta">Instructor</span>
+      <a href="../trabajador/inicio.html"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v11h-6v-8H9v8H3Z"/></svg></span> Inicio</a>
+      <a href="#cursos-instructor" class="activo" aria-current="location"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 4h7l2 2 2-2h7v16h-7l-2 2-2-2H3V4ZM12 6v16"/></svg></span> Cursos</a>
+      <a href="#notificaciones-instructor"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></span> Notificaciones <span id="badge-notificaciones-instructor" class="badge badge-proceso" hidden>0</span></a>
+      <a href="#mis-solicitudes-cursos"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span> Mis solicitudes</a>
+      <a href="../trabajador/tutorial.html"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 5M12 17v1"/></svg></span> Tutorial de uso</a>
+      <a href="../trabajador/soporte.html"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H2v6h4v-6H4Zm16 0h2v6h-4v-6h2ZM20 18v3h-6"/></svg></span> Soporte y ayuda</a>
+    </nav>
+  </aside>
+
+  <nav class="topbar-admin">
+    <button class="btn btn-texto admin-menu-toggle" id="btn-menu-admin" type="button" aria-controls="admin-sidebar" aria-expanded="true" aria-label="Contraer navegación">☰</button>
+    <div class="topbar-admin-marca">
+      <img src="../assets/cicsa-logo.png" alt="CICSA" class="logo-cicsa-topbar" width="1071" height="286">
+      <div class="topbar-admin-marca-texto"><span>Panel del instructor</span></div>
+    </div>
+    <div class="topbar-admin-derecha">
+      <span class="badge-rol-admin">Instructor</span>
+      <button class="btn btn-secundario btn-sm" id="btn-cerrar-sesion">Cerrar sesión</button>
+    </div>
+  </nav>
+
+  <main class="contenedor-admin">
+    <div class="admin-encabezado">
+      <div class="admin-encabezado-contenido">
+        <div class="admin-eyebrow">Área del instructor</div>
+        <h1 id="bienvenida-admin">Mis cursos</h1>
+        <p class="muted">Aquí solo aparecen los cursos creados por tu cuenta. Administración aprueba y asigna los cursos a trabajadores.</p>
+      </div>
+      <div class="admin-acciones-rapidas" aria-label="Acciones rápidas">
+        <a class="btn btn-primario btn-sm" data-abrir-form="alta-curso" href="#cursos-instructor">+ Nuevo curso</a>
+        <a class="btn btn-secundario btn-sm" href="#mis-solicitudes-cursos">Ver solicitudes</a>
+      </div>
+    </div>
+    <section class="admin-seccion cursos-admin-seccion" id="cursos-instructor">
+<div class="cursos-admin-encabezado">
+<div>
+<span class="cursos-admin-kicker">Área de cursos del instructor</span>
+<h2>Mis cursos</h2>
+<p class="muted">Crea y edita tus cursos. Cada alta o cambio se envía al administrador para aprobación.</p>
+</div>
+<div aria-label="Pasos para crear un curso" class="cursos-admin-guia">
+<span class="activo"><b>1</b> Datos</span>
+<span><b>2</b> Recursos</span>
+<span><b>3</b> Contenido</span>
+</div>
+</div>
+<details class="admin-alta-panel" id="alta-curso"><summary><span><strong>Crear nuevo curso</strong><small>Datos, asignación, recursos y evaluaciones</small></span><span aria-hidden="true" class="admin-alta-indicador">+</span></summary>
+<form class="curso-editor" id="form-curso">
+<div class="curso-editor-cabecera">
+<div>
+<span class="curso-editor-kicker">Constructor de contenidos</span>
+<h3 id="curso-editor-titulo">Crear nuevo curso</h3>
+<p class="muted">Completa la información y organiza el contenido paso a paso.</p>
+<div class="curso-editor-resumen" id="curso-editor-resumen">0 temas · pendiente de aprobación</div>
+</div>
+<span class="curso-editor-estado" id="curso-editor-estado">Borrador nuevo</span>
+</div>
+<div class="curso-editor-seccion">
+<div class="curso-editor-seccion-titulo"><span class="curso-editor-numero">01</span><div><h4>Información general</h4><p>Define los datos que verán los trabajadores.</p></div></div>
+<div class="curso-editor-grid">
+<div class="campo">
+<label for="nc-nombre">Título del curso</label>
+<input id="nc-nombre" placeholder="Ej. Seguridad e higiene industrial" required="" type="text"/>
+</div>
+<div class="campo">
+<label for="nc-horas">Duración del curso (horas)</label>
+<input id="nc-horas" min="0.5" placeholder="2" required="" step="0.5" type="number"/>
+</div>
+
+
+<div class="campo curso-editor-descripcion">
+<label for="nc-descripcion">Descripción</label>
+<textarea id="nc-descripcion" placeholder="Explica brevemente qué aprenderá el trabajador..." required="" rows="3"></textarea>
+</div>
+<div class="campo">
+<label for="nc-fecha-inicio">Fecha y hora de apertura</label>
+<input id="nc-fecha-inicio" type="datetime-local"/>
+<small class="muted">El trabajador podrá acceder desde este momento. Si se deja vacío, inicia al aprobar y publicar.</small>
+</div>
+<div class="campo">
+<label for="nc-fecha-fin">Fecha y hora de cierre</label>
+<input aria-describedby="ayuda-cierre-curso" id="nc-fecha-fin" type="datetime-local"/>
+<small class="muted" id="ayuda-cierre-curso">El trabajador perderá el acceso al llegar esta fecha y hora. Si se deja vacío, el curso permanecerá abierto.</small>
+</div>
+</div>
+</div>
+<button class="btn btn-secundario curso-contenido-abrir" id="btn-abrir-contenido-curso" type="button">
+          Abrir recursos y estructura
+        </button>
+<section aria-hidden="true" class="curso-contenido-modal" hidden="" id="modal-contenido-curso">
+<div class="curso-contenido-modal-fondo" data-cerrar-contenido=""></div>
+<div aria-labelledby="titulo-contenido-curso" aria-modal="true" class="curso-contenido-card curso-editor-seccion" role="dialog">
+<button aria-label="Cerrar ventana" class="curso-contenido-cerrar" id="btn-cerrar-contenido-curso" type="button">×</button>
+<div class="curso-contenido-card-cabecera">
+<div class="curso-contenido-card-titulo">
+<div class="curso-contenido-card-titulo-fila">
+<span class="curso-editor-numero">02</span>
+<h4 id="titulo-contenido-curso">Recursos y estructura del aprendizaje</h4>
+</div>
+<p class="muted">Agrega recursos visuales y organiza el curso en temas, unidades y subtemas.</p>
+</div>
+<span class="curso-contenido-card-ayuda">Contenido del curso</span>
+</div>
+<div class="curso-contenido-bloque curso-contenido-recursos">
+<div class="curso-contenido-bloque-titulo">
+<strong>Recursos visuales</strong>
+<span>Portada y video introductorio</span>
+</div>
+<div class="curso-media-grid">
+<div class="curso-media-field">
+<label for="nc-imagen">Imagen de portada</label>
+<input accept="image/*" id="nc-imagen" type="file"/>
+<div class="curso-media-preview" id="nc-imagen-preview">Sin imagen seleccionada</div>
+</div>
+<div class="curso-media-field">
+<label for="nc-video">Video introductorio</label>
+<input accept="video/*" id="nc-video" type="file"/>
+<div class="curso-media-preview" id="nc-video-preview">Sin video seleccionado</div>
+</div>
+</div>
+</div>
+<div class="curso-contenido-bloque curso-contenido-estructura">
+<div class="curso-contenido-bloque-titulo">
+<strong>Estructura del aprendizaje</strong>
+<span>Ordena el recorrido del trabajador</span>
+</div>
+<div id="constructor-modulos"></div>
+<button class="btn btn-secundario btn-sm" id="btn-agregar-modulo" type="button">+ Agregar tema</button>
+<div class="curso-evaluaciones-estructura">
+<div class="curso-evaluacion-config">
+<div>
+<strong>Evaluación del curso</strong>
+<span>Se genera automáticamente con 5 preguntas aleatorias tomadas del banco del Examen final.</span>
+</div>
+<span class="badge badge-info">5 preguntas automáticas</span>
+</div>
+<div class="curso-evaluacion-config">
+<div>
+<strong>Examen final</strong>
+<span>Configura un banco de 5 a 25 preguntas. Al trabajador se le mostrarán en orden aleatorio.</span>
+</div>
+<button class="btn btn-primario btn-sm" id="btn-agregar-examen-estructura" type="button">+ Configurar examen final</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="curso-editor-acciones curso-editor-acciones-fijas">
+<span class="curso-editor-ayuda">Revisa los datos antes de guardar.</span>
+<button class="btn btn-secundario oculto" id="btn-cancelar-edicion" type="button">Cancelar edición</button>
+<button class="btn btn-primario" id="btn-guardar-curso" type="submit">+ Agregar curso</button>
+</div>
+</form>
+</details>
+<div aria-live="polite" class="cursos-admin-grid" id="tabla-cursos-instructor"></div>
+</section>
+    <section aria-labelledby="notificaciones-instructor-titulo" class="admin-seccion" id="notificaciones-instructor">
+      <h2 id="notificaciones-instructor-titulo">Notificaciones</h2>
+      <p class="muted">Aquí verás autorizaciones, rechazos y comentarios sobre tus cursos.</p>
+      <div id="lista-notificaciones-instructor" class="lista-notificaciones-admin" aria-live="polite"><p class="muted">Cargando notificaciones…</p></div>
+    </section>
+    <section aria-labelledby="mis-solicitudes-cursos-titulo" class="admin-seccion" id="mis-solicitudes-cursos">
+<h2 id="mis-solicitudes-cursos-titulo">Mis solicitudes</h2>
+<p class="muted">Consulta la última solicitud de revisión que enviaste para cada curso.</p>
+<div class="tabla-admin-wrap">
+<table>
+<thead><tr><th scope="col">Curso</th><th scope="col">Fecha</th><th scope="col">Estatus</th><th scope="col">Comentario</th></tr></thead>
+<tbody aria-live="polite" id="tabla-mis-solicitudes-cursos"><tr><td colspan="4">Cargando solicitudes…</td></tr></tbody>
+</table>
+</div>
+</section>
+    <p class="pie-admin">CICSA Capacita — Módulo independiente del Instructor.</p>
+  </main>
+</div>
+<div id="admin-toast-container" class="toast-container" role="status" aria-live="polite"></div>
+<script src="../js/api.js?v=horarios-compartidos-3"></script>
+<script src="../js/instructor/estado.js?v=3"></script>
+<script src="../js/admin/editor-curso.js?v=estructura-fechas-v1"></script>
+<script src="../js/admin/examenes.js?v=evaluaciones-v4"></script>
+<script src="../js/admin/mis-solicitudes-cursos.js?v=estructura-fechas-v1"></script>
+<script src="../js/instructor/cursos.js?v=estructura-fechas-v1"></script>
+<script src="../js/instructor/notificaciones.js?v=1"></script>
+<script src="../js/instructor/navegacion.js?v=3"></script>
+<script src="../js/instructor/arranque.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+.tutorial-pagina{min-height:100vh}.tutorial-contenido{max-width:1000px;margin:40px auto;padding:0 28px}.tutorial-etiqueta{font-size:12px;letter-spacing:.14em;font-weight:800}.tutorial-lista{display:grid;gap:20px;margin-top:28px}.tutorial-item{background:var(--blanco);border:1px solid var(--gris-borde);border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.05)}.tutorial-item h2{margin-top:0}.tutorial-item video{display:block;width:100%;max-height:520px;object-fit:contain;background:#111;border-radius:12px;margin-top:16px}
+
+/* Tutorial: formulario completo, sin recortes ni desbordamientos */
+.tutorial-contenido, #tutorial-admin { box-sizing:border-box; width:100%; max-width:100%; overflow:visible; }
+#tutorial-admin { padding:clamp(18px,3vw,32px); border:1px solid var(--gris-borde,#e1e6ea); border-radius:18px; background:#fff; }
+#form-tutorial-admin { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; width:100%; min-width:0; }
+#form-tutorial-admin label { display:flex; flex-direction:column; gap:8px; min-width:0; color:#25343c; font-weight:700; }
+#form-tutorial-admin label[style*="1/-1"] { grid-column:1/-1 !important; }
+#form-tutorial-admin input, #form-tutorial-admin select, #form-tutorial-admin textarea { width:100%; max-width:100%; min-width:0; box-sizing:border-box; border:1px solid #dce3e7; border-radius:10px; padding:12px 14px; background:#f9fbfc; color:#25343c; font:inherit; }
+#form-tutorial-admin textarea { resize:vertical; min-height:100px; }
+#form-tutorial-admin input:focus, #form-tutorial-admin select:focus, #form-tutorial-admin textarea:focus { outline:2px solid #f4b0ab; border-color:#c62828; background:#fff; }
+#form-tutorial-admin .btn { width:max-content; max-width:100%; min-height:44px; }
+#tutorial-admin-lista { display:grid; gap:12px; min-width:0; }
+#tutorial-admin-lista .tarjeta { min-width:0; overflow-wrap:anywhere; word-break:break-word; padding:16px; border:1px solid #e1e6ea; border-radius:12px; background:#f8fafb; }
+#tutorial-admin-lista .tarjeta p { overflow-wrap:anywhere; }
+@media (max-width:760px) { #form-tutorial-admin { grid-template-columns:1fr; } #form-tutorial-admin label[style*="1/-1"] { grid-column:auto !important; } #form-tutorial-admin .btn { width:100%; } #tutorial-admin { padding:16px; } }
+
+/* ===== Estilo renovado para administrar tutoriales ===== */
+#tutorial-admin{background:linear-gradient(135deg,#fff 0%,#f7fafc 100%)!important;box-shadow:0 12px 35px rgba(32,44,51,.08)!important}
+#tutorial-admin .admin-bloque-cabecera{border-bottom:1px solid #e7edf0;padding-bottom:18px;margin-bottom:22px}
+#tutorial-admin .admin-bloque-kicker{color:#c62828;font-weight:800;letter-spacing:.12em}
+#form-tutorial-admin{background:#fff;border:1px solid #e5ebef;border-radius:16px;padding:22px;box-shadow:0 6px 18px rgba(32,44,51,.04)}
+#form-tutorial-admin label{font-size:13px}
+#form-tutorial-admin .campo-ayuda{font-size:11px;font-weight:500;color:#81909a;margin-top:-4px}
+#form-tutorial-admin input[type=file]{padding:14px;border:1px dashed #c62828;background:#fff8f8;cursor:pointer}
+.tutorial-campo-archivo{background:#fff8f8;padding:16px;border-radius:12px;border:1px solid #f2d7d7}
+.archivo-seleccionado{font-size:12px;color:#287a50;font-weight:700}
+.tutorial-form-pie{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:8px;font-size:11px;color:#7a8992}
+.tutorial-admin-card{display:flex;align-items:center;gap:15px;padding:18px;border:1px solid #e2e9ed;border-radius:14px;background:#fff;box-shadow:0 5px 16px rgba(32,44,51,.05)}
+.tutorial-admin-icono{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border-radius:12px;background:#fce9e9;font-size:23px}
+.tutorial-admin-info{min-width:0;flex:1}
+.tutorial-admin-info strong{display:block;font-size:15px;color:#263942}
+.tutorial-admin-info span{display:inline-block;margin-top:4px;font-size:10px;font-weight:800;letter-spacing:.08em;color:#c62828}
+.tutorial-admin-info p{margin:6px 0;font-size:12px;color:#687984}
+.tutorial-admin-info small{display:block;overflow-wrap:anywhere;color:#8a989f;font-size:11px}
+.tutorial-vacio{display:flex;flex-direction:column;align-items:center;gap:8px;padding:32px;color:#81909a;text-align:center;border:1px dashed #d8e1e6;border-radius:14px}
+.tutorial-vacio strong{color:#52636e}
+@media(max-width:700px){.tutorial-form-pie{align-items:stretch;flex-direction:column}.tutorial-form-pie .btn{width:100%}.tutorial-admin-card{align-items:flex-start;flex-wrap:wrap}.tutorial-admin-card .btn{margin-left:auto}}
+
+/* Guía del trabajador: estilos independientes del formulario administrativo. */
+.tutorial-trabajador { margin:0; background:#f4f6f8; color:#26343e; }
+.tutorial-trabajador svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.tutorial-barra { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px max(24px,calc((100% - 1080px)/2)); background:#fff; border-bottom:1px solid #e1e6eb; }
+.tutorial-volver { display:inline-flex; align-items:center; gap:10px; min-height:40px; color:#344854; font-size:14px; font-weight:600; }
+.tutorial-volver:hover { color:#b4232b; }
+.tutorial-marca { font-weight:800; letter-spacing:.04em; font-size:18px; white-space:nowrap; }
+.tutorial-marca span { color:#b4232b; font-size:11px; margin-left:5px; letter-spacing:.1em; }
+.tutorial-trabajador .tutorial-contenido { width:100%; max-width:1128px; margin:0 auto; padding:28px 24px 36px; }
+.tutorial-ruta { display:flex; flex-wrap:wrap; gap:10px; font-size:12px; color:#75838d; margin-bottom:22px; }
+.tutorial-ruta a { color:#536674; }
+.tutorial-portada { display:grid; grid-template-columns:minmax(0,1fr) 210px; align-items:center; gap:32px; background:#26343d; border:1px solid #34444f; border-radius:20px; padding:36px 40px; color:#fff; }
+.tutorial-portada .tutorial-etiqueta { display:block; color:#d5b9ba; font-size:10px; letter-spacing:.16em; margin-bottom:14px; }
+.tutorial-portada h1 { font-size:clamp(28px,3.4vw,40px); line-height:1.15; letter-spacing:-.8px; margin:0 0 16px; color:#fff; }
+.tutorial-portada p { max-width:510px; margin:0 0 24px; color:#c5d0d7; font-size:14px; line-height:1.7; }
+.tutorial-portada .tutorial-accion { background:#fff; color:#26343d; border:1px solid #fff; border-radius:9px; padding:10px 16px; font-size:13px; min-height:42px; gap:16px; }
+.tutorial-portada .tutorial-accion:hover { background:#edf1f4; }
+.tutorial-portada-icono { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; min-height:190px; border-left:1px solid #46545e; color:#d3dde3; }
+.tutorial-portada-icono svg { width:74px; height:74px; stroke-width:1; }
+.tutorial-portada-icono span { font-size:9px; letter-spacing:.14em; font-weight:600; }
+.tutorial-primeros-pasos { margin:30px 0; }
+.tutorial-seccion-titulo { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px; }
+.tutorial-seccion-titulo h2 { font-size:18px; margin:0; letter-spacing:-.25px; }
+.tutorial-seccion-titulo p { font-size:12px; color:#6b7b86; margin:5px 0 0; line-height:1.6; }
+.tutorial-seccion-titulo > span { color:#6b7b86; font-size:12px; }
+.tutorial-pasos { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; padding:0; margin:0; list-style:none; }
+.tutorial-pasos li { background:#fff; padding:22px; border:1px solid #dfe5ea; border-radius:12px; }
+.tutorial-paso-numero { display:inline-grid; place-items:center; width:32px; height:30px; border-radius:8px; background:#f8eeee; color:#a7252c; font-size:12px; font-weight:700; margin-bottom:14px; }
+.tutorial-pasos h3 { font-size:15px; margin:0 0 8px; }
+.tutorial-pasos p { font-size:12px; color:#637582; line-height:1.75; margin:0; }
+.tutorial-total { white-space:nowrap; padding:5px 10px; background:#e9eef2; border-radius:6px; }
+.tutorial-trabajador .tutorial-lista { margin-top:0; gap:16px; }
+.tutorial-trabajador .tutorial-item { padding:24px; box-shadow:none; border:1px solid #dfe5ea; border-radius:12px; overflow-wrap:anywhere; }
+.tutorial-item h3 { font-size:17px; margin:16px 0 8px; }
+.tutorial-item p { color:#637582; line-height:1.7; font-size:13px; }
+.tutorial-recurso-tipo { display:flex; align-items:center; gap:10px; font-size:11px; font-weight:600; color:#647786; }
+.tutorial-recurso-icono,.tutorial-vacio-icono { display:grid; place-items:center; width:42px; height:42px; flex-shrink:0; border-radius:10px; background:#edf2f5; color:#536b7d; }
+.tutorial-recurso-enlace { display:inline-flex; align-items:center; gap:12px; min-height:42px; margin-top:8px; color:#a7252c; font-size:13px; font-weight:600; }
+.tutorial-sin-materiales { display:flex; align-items:center; gap:18px; padding:26px; border:1px solid #dfe5ea; background:#fff; border-radius:12px; }
+.tutorial-sin-materiales h3 { margin:0 0 6px; font-size:15px; }
+.tutorial-sin-materiales p { margin:0; color:#6b7b86; font-size:12px; line-height:1.7; max-width:650px; }
+.tutorial-pie { display:flex; justify-content:space-between; align-items:center; gap:20px; border-top:1px solid #dfe5ea; margin-top:28px; padding-top:20px; }
+.tutorial-pie p { font-size:11px; line-height:1.7; margin:0; color:#6b7b86; }
+.tutorial-pie a { font-size:12px; font-weight:600; color:#536674; white-space:nowrap; }
+.tutorial-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+#tutorial-materiales { scroll-margin-top:20px; }
+@media(max-width:700px) {
+ .tutorial-barra { padding:12px 18px; }
+ .tutorial-trabajador .tutorial-contenido { padding:20px 18px 28px; }
+ .tutorial-portada { grid-template-columns:1fr; padding:28px 24px; gap:0; }
+ .tutorial-portada-icono { display:none; }
+ .tutorial-pasos { grid-template-columns:1fr; gap:10px; }
+ .tutorial-pasos li { padding:18px; }
+ .tutorial-seccion-titulo { align-items:flex-start; }
+ .tutorial-primeros-pasos .tutorial-seccion-titulo > span { display:none; }
+ .tutorial-sin-materiales { padding:20px; align-items:flex-start; gap:12px; }
+ .tutorial-pie { flex-direction:column; align-items:flex-start; gap:10px; }
+}
+@media(prefers-reduced-motion:reduce) { .tutorial-trabajador * { scroll-behavior:auto; transition:none; } }
+
+/* Formulario compartido de administrador y súper administrador, en orden vertical. */
+.admin-shell #tutorial-admin { margin-top:24px; padding:clamp(20px,3vw,32px); }
+.admin-shell #tutorial-admin .admin-bloque-cabecera { align-items:flex-start; }
+.admin-shell #tutorial-admin .admin-bloque-cabecera h2 { font-size:21px; margin:5px 0; }
+.admin-shell #tutorial-admin .admin-bloque-cabecera p { font-size:13px; line-height:1.6; }
+.admin-shell #tutorial-admin #form-tutorial-admin {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:20px;
+  width:100%;
+  max-width:720px;
+  margin:0 auto;
+  padding:24px;
+  border-radius:16px;
+}
+.admin-shell #form-tutorial-admin > label,
+.admin-shell #form-tutorial-admin > .tutorial-form-pie { grid-column:1; }
+.admin-shell #form-tutorial-admin label { gap:8px; line-height:1.5; }
+.admin-shell #form-tutorial-admin .campo-ayuda { font-weight:400; line-height:1.5; margin:0; }
+.admin-shell #form-tutorial-admin input,
+.admin-shell #form-tutorial-admin select { min-height:44px; }
+.admin-shell #form-tutorial-admin input[type=file] { font-size:12px; }
+.admin-shell #form-tutorial-admin input[type=file]::file-selector-button {
+  border:1px solid #d5dde3;
+  border-radius:7px;
+  padding:8px 10px;
+  margin-right:10px;
+  background:#fff;
+  color:#344854;
+  font:inherit;
+  cursor:pointer;
+}
+.admin-shell #form-tutorial-admin .tutorial-form-pie {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(180px,1.3fr);
+  align-items:center;
+  gap:20px;
+}
+.admin-shell #form-tutorial-admin .tutorial-form-pie span { line-height:1.6; }
+.admin-shell #form-tutorial-admin .tutorial-form-pie .btn { width:100%; min-height:44px; }
+.admin-shell #tutorial-admin .tutorial-publicados-cabecera,
+.admin-shell #tutorial-admin #tutorial-admin-lista { width:100%; max-width:720px; margin-left:auto; margin-right:auto; }
+.admin-shell #tutorial-admin .tutorial-publicados-cabecera { margin-top:28px; margin-bottom:14px; }
+.admin-shell .tutorial-publicados-cabecera h3 { font-size:16px; margin:0 0 5px; }
+.admin-shell .tutorial-publicados-cabecera p { font-size:12px; line-height:1.6; margin:0; }
+@media(max-width:600px) {
+ .admin-shell #tutorial-admin #form-tutorial-admin { padding:18px; }
+ .admin-shell #form-tutorial-admin .tutorial-form-pie { grid-template-columns:1fr; gap:12px; }
+}
+
+.admin-shell #tutorial-admin .tutorial-ver-publicado { margin-top:12px; }
+.admin-shell #tutorial-admin #tutorial-publicacion-estado { max-width:720px; margin:12px auto; color:#536674; font-size:13px; line-height:1.6; }
+.admin-shell #tutorial-admin #tutorial-publicacion-estado:empty { display:none; }
+
+/* Logo corporativo en el encabezado del tutorial. */
+.tutorial-barra .tutorial-marca { display:flex; align-items:center; flex-shrink:0; }
+.tutorial-barra .tutorial-logo-cicsa { display:block; width:156px; max-width:100%; height:auto; object-fit:contain; }
+@media(max-width:480px) { .tutorial-barra .tutorial-logo-cicsa { width:120px; } }

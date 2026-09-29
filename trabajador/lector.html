@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CICSA Capacita — Lector de Curso</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/lector-mejoras.css?v=20260922-2" />
+</head>
+<body>
+
+<div class="lector-curso">
+  <!-- SIDEBAR IZQUIERDO: ESQUEMA DEL CURSO -->
+  <aside class="lector-sidebar" id="lector-sidebar">
+    <div class="lector-cabecera">
+      <button class="lector-volver" id="btn-volver-dashboard" title="Volver al dashboard" aria-label="Volver a mi aprendizaje">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15.5 5.5L9 12l6.5 6.5" />
+        </svg>
+      </button>
+      <div class="lector-titulo" id="lector-titulo-curso">Cargando curso…</div>
+    </div>
+
+    <!-- Navegación del contenido -->
+    <div class="lector-tabs">
+      <button class="lector-tab activo" data-tab="esquema">Contenido del curso</button>
+    </div>
+
+    <!-- CONTENIDO TAB: Esquema del Curso -->
+    <div class="lector-esquema" id="tab-esquema" style="display: block;">
+      <div class="lector-buscador">
+        <input type="search" placeholder="Buscar un subtema..." aria-label="Buscar dentro del curso" />
+        <span aria-hidden="true">⌕</span>
+      </div>
+      <p id="lector-lecciones-completadas" class="lector-resumen">Cargando progreso…</p>
+      <div id="estructura-modulos"></div>
+      <nav class="lector-ayuda-soporte" aria-label="Ayuda y soporte"><a href="tutorial.html" target="_blank" rel="noopener">Ayuda</a><a href="soporte.html" target="_blank" rel="noopener">Soporte</a></nav>
+      <p id="lector-busqueda-vacia" class="lector-resumen" hidden>No hay subtemas con ese nombre.</p>
+    </div>
+
+  </aside>
+  <div class="lector-separador" id="lector-separador" role="separator" aria-orientation="vertical" aria-label="Ajustar ancho del menú del curso" tabindex="0"></div>
+
+  <!-- AREA PRINCIPAL: CONTENIDO DEL CURSO -->
+  <div class="lector-contenido-main">
+    <header class="lector-topbar">
+      <div class="lector-miga">
+        <button class="lector-sidebar-toggle" id="btn-toggle-sidebar" type="button"
+          aria-controls="lector-sidebar" aria-expanded="true" aria-label="Ocultar menú del curso">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+        <a class="lector-miga-seccion" href="dashboard.html">Mi aprendizaje</a>
+        <span aria-hidden="true">/</span>
+        <strong id="lector-topbar-curso">Curso</strong>
+        <span aria-hidden="true">/</span>
+        <span id="lector-topbar-leccion">Selecciona un subtema</span>
+      </div>
+      <div class="lector-topbar-meta">
+        <div class="lector-curso-datos" aria-label="Información del curso">
+          <span id="lector-curso-categoria">Curso</span>
+          <span id="lector-curso-duracion">Duración —</span>
+          <span id="lector-curso-estado">En progreso</span><span id="lector-tiempo-restante" class="lector-tiempo-restante">⏱ 00:00:00 restantes</span>
+        </div>
+        <span class="lector-progreso-label">Progreso del curso</span>
+        <strong id="lector-progreso-porcentaje">0%</strong>
+      </div>
+    </header>
+    <div class="lector-progreso-barra" aria-label="Progreso del curso">
+      <span id="lector-progreso-relleno"></span>
+    </div>
+    <div class="lector-viewport">
+      <div class="lector-contenido" id="contenido-tema">
+        <div class="lector-bienvenida">
+          <span class="lector-etiqueta">COMIENZA AQUÍ</span>
+          <h1>Bienvenido al curso</h1>
+          <p>Selecciona un subtema del esquema para comenzar.</p>
+        </div>
+      </div>
+
+    </div>
+    <footer class="lector-pasos">
+      <div class="lector-pasos-info">
+        <div class="lector-progreso-navegacion">Lección <span id="progreso-actual">0</span> de <span id="progreso-total">0</span></div>
+        <span id="lector-estado-leccion" aria-live="polite">Selecciona un subtema</span>
+      </div>
+      <p id="lector-aviso-guardado" role="alert"></p>
+      <div class="lector-pasos-acciones">
+        <button class="lector-nav-btn" id="btn-anterior" type="button" disabled>Anterior</button>
+        <button class="lector-nav-btn" id="btn-siguiente" type="button" disabled>Siguiente</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script src="../js/api.js?v=horarios-compartidos-3"></script>
+<script src="../js/validacion-leccion.js?v=1"></script>
+<script src="../js/lector.js?v=estructura-fechas-v1"></script>
+</body>
+</html>

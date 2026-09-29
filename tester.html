@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CICSA — Datos para pruebas</title><link rel="stylesheet" href="css/styles.css"></head>
+<body><main style="max-width:900px;margin:40px auto;padding:24px">
+<h1>Datos para pruebas</h1>
+<p>Carga información ficticia para revisar los apartados de CICSA en este navegador. Se agregan una sola vez y se conservan los registros existentes. Los datos se comparten entre las cuentas de este navegador.</p>
+<p>Incluye usuarios, cursos con contenido y exámenes, aprobación de cursos, seguimiento, logros, actividad, notificaciones, solicitudes, comunicados, tutorial y soporte.</p>
+<button class="btn btn-primario" id="cargar-tester" type="button">Cargar datos de prueba</button>
+<p id="estado-tester" role="status" aria-live="polite"></p>
+<h2>Cuentas de prueba</h2><p>Contraseña para todas: <strong>Tester2026</strong></p>
+<table><thead><tr><th>Usuario</th><th>Escenario</th></tr></thead><tbody>
+<tr><td>tester.superadmin</td><td>Aprobaciones y acceso completo</td></tr>
+<tr><td>tester.admin</td><td>Administración y seguimiento</td></tr>
+<tr><td>tester.instructor</td><td>Cursos y solicitudes de revisión</td></tr>
+<tr><td>tester.nuevo</td><td>Curso sin iniciar y soporte pendiente</td></tr>
+<tr><td>tester.avance</td><td>Avance parcial y soporte en atención</td></tr>
+<tr><td>tester.aprobado</td><td>Curso completado, resultados y logros</td></tr>
+<tr><td>tester.reprobado</td><td>Examen no aprobado</td></tr>
+<tr><td>tester.inactivo</td><td>Validar rechazo de acceso</td></tr>
+</tbody></table>
+<p><a href="index.html">Ir a iniciar sesión</a> · Si hay una sesión abierta, ciérrala para cambiar de cuenta.</p>
+<p>El curso de prueba abre al cargar estos datos y cierra 30 días después. Recarga las otras pestañas para consultar la información agregada.</p>
+</main><script src="js/api.js"></script><script src="js/datos-tester.js"></script></body></html>

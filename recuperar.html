@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>CICSA Capacita — Recuperar contraseña</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="pantalla-simple">
+  <div class="tarjeta-simple">
+    <div class="marca">
+      <span class="marca-icono">CC</span>
+      CICSA Capacita
+    </div>
+
+    <div class="paso-indicador">
+      <span class="activo" data-paso="1"></span>
+      <span data-paso="2"></span>
+    </div>
+
+    <!-- Paso 1: solicitar cambio al administrador -->
+    <div id="paso-solicitar">
+      <h2>Recupera tu contraseña</h2>
+      <p class="muted">Escribe tu correo y enviaremos una solicitud al administrador para restablecerla.</p>
+
+      <form id="form-solicitar">
+        <div class="campo">
+          <label for="correo-recuperar">Correo electrónico</label>
+          <input type="email" id="correo-recuperar" placeholder="nombre@cicsa.mx" required />
+        </div>
+        <button type="submit" class="btn btn-primario btn-bloque" id="btn-solicitar">Enviar solicitud al administrador</button>
+      </form>
+    </div>
+
+    <!-- Paso 2: confirmación de la solicitud -->
+    <div id="paso-confirmacion" class="oculto">
+      <h2>Solicitud enviada</h2>
+      <p class="muted">
+        El administrador recibió tu solicitud para cambiar la contraseña de
+        <strong id="correo-mostrado"></strong>. Él autorizará el cambio.
+      </p>
+      <button type="button" class="btn btn-secundario btn-bloque" id="btn-reenviar">Reenviar solicitud</button>
+    </div>
+
+    <p style="margin-top:24px; text-align:center;">
+      <a href="index.html" style="font-size:13.5px;">← Volver a iniciar sesión</a>
+    </p>
+  </div>
+</div>
+
+<script src="js/api.js?v=horarios-compartidos-3"></script>
+<script src="js/recuperar.js"></script>
+</body>
+</html>

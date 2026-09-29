@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>CICSA Capacita — Iniciar sesión</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="intro-cicsa" aria-hidden="true">
+  <div class="intro-cicsa-panel intro-cicsa-izquierdo"></div>
+  <div class="intro-cicsa-panel intro-cicsa-derecho"></div>
+  <img class="intro-cicsa-logo" src="assets/cicsa-logo.png" alt="" width="1071" height="286" fetchpriority="high" />
+</div>
+
+<div class="pantalla-acceso">
+
+  <div class="panel-marca">
+    <div>
+      <div class="marca">
+        <img class="logo-cicsa-acceso" src="assets/cicsa-logo.png" alt="CICSA" width="1071" height="286" />
+      </div>
+
+      <h1 style="margin-top:64px;">La capacitación de tu equipo, en un solo lugar.</h1>
+      <div class="subrayado"></div>
+      <p class="lema">
+        Asigna cursos, da seguimiento al avance de cada colaborador y evalúa
+        resultados sin salir de la plataforma.
+      </p>
+
+      <ul class="lista-beneficios">
+        <li><span class="punto"></span> Cursos organizados por módulos y lecciones</li>
+        <li><span class="punto"></span> Seguimiento de avance en tiempo real</li>
+        <li><span class="punto"></span> Evaluaciones con calificación automática</li>
+        <li><span class="punto"></span> Reportes exportables para RH y supervisión</li>
+      </ul>
+    </div>
+
+    <footer>© 2026 CICSA — Plataforma interna de capacitación</footer>
+  </div>
+
+  <div class="panel-formulario">
+    <div class="caja-formulario">
+      <h2>Inicia sesión</h2>
+      <p class="muted">Ingresa con tu usuario o correo y contraseña.</p>
+
+      <div id="sesion-activa-banner" class="sesion-activa-banner oculto">
+        <p>Ya existe una sesión activa en este navegador.</p>
+        <div class="acciones-login">
+          <button type="button" id="btn-continuar-sesion" class="btn btn-primario btn-sm">Continuar</button>
+          <button type="button" id="btn-cerrar-sesion-login" class="btn btn-secundario btn-sm">Cerrar sesión</button>
+        </div>
+      </div>
+
+      <form id="form-login" novalidate>
+        <div class="campo" id="campo-correo">
+          <label for="correo">Usuario o correo electrónico</label>
+          <input type="text" id="correo" name="correo" placeholder="Tu usuario o correo" autocomplete="username" required />
+          <div class="campo-error">Ingresa tu usuario o correo.</div>
+        </div>
+
+        <div class="campo" id="campo-password">
+          <label for="password">Contraseña</label>
+          <div class="password-field">
+            <input type="text" id="password" name="password" class="password-mask" placeholder="Tu contraseña" autocomplete="current-password" required />
+          </div>
+          <div class="campo-error">Ingresa tu contraseña.</div>
+        </div>
+
+        <div class="alerta-error oculto" id="error-general" role="alert"></div>
+
+        <button type="submit" class="btn btn-primario btn-bloque btn-login" id="btn-login">
+          <span class="btn-texto-login">Iniciar sesión</span>
+        </button>
+      </form>
+
+      <div class="flex entre centro-v login-helper" style="margin-top:18px;">
+        <a href="recuperar.html">¿Olvidaste tu contraseña?</a>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/intro.js"></script>
+<script src="js/api.js?v=horarios-compartidos-3"></script>
+<script src="js/login.js?v=flujo-2"></script>
+</body>
+</html>

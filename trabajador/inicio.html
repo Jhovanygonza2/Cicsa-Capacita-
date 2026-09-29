@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CICSA Capacita — Inicio</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/comunicados.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="app-sidebar" id="sidebar-trabajador">
+    <div class="marca marca-corporativa"><img src="../assets/cicsa-logo.png" alt="CICSA" class="logo-cicsa-trabajador"><span>CAPACITACIÓN</span></div>
+    <ul class="nav-lateral">
+      <li><a href="inicio.html" class="activo"><span class="icono icono-lineal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4v-7H9v7H5a1 1 0 0 1-1-1v-8.5Z"></path></svg></span> Inicio</a></li>
+      <li><a href="dashboard.html"><span class="icono icono-lineal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg></span> Mi aprendizaje</a></li>
+      <li><a href="perfil.html"><span class="icono icono-lineal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 19c1.4-3.2 4.3-4.8 8-4.8s6.6 1.6 8 4.8"></path></svg></span> Mi perfil</a></li>
+      <li><a href="tutorial.html"><span class="icono icono-lineal">?</span> Tutorial de uso</a></li>
+    </ul>
+    <div class="tarjeta-usuario-sidebar"><div class="avatar" id="avatar-trabajador">--</div><div><div class="nombre" id="nombre-trabajador">—</div><div class="rol">Trabajador</div></div></div>
+  </aside>
+  <div class="app-main-panel">
+    <nav class="navbar-top"><button class="btn btn-texto sidebar-toggle" id="btn-toggle-sidebar-trabajador" type="button" aria-controls="sidebar-trabajador" aria-expanded="false" aria-label="Abrir menú de navegación">☰</button><div class="navbar-centro"><div class="navbar-titulo"><h1 id="saludo-inicio">Hola</h1></div></div><div class="navbar-derecha"><a class="disparador-perfil" href="perfil.html" aria-label="Ir a mi perfil"><div class="avatar" id="avatar-trabajador-compact">--</div><div class="datos"><div class="nombre" id="nombre-trabajador-compact">—</div></div></a></div></nav>
+    <main class="app-contenido-top inicio-comunicados-contenido">
+      <header class="inicio-encabezado"><span class="inicio-etiqueta">CICSA · CAPACITACIÓN</span><h1>Comunicados</h1><p>Consulta las novedades, avisos y anuncios de tu organización.</p></header>
+      <div id="comunicados-trabajador" class="comunicados-trabajador-lista" aria-live="polite"></div>
+    </main>
+  </div>
+</div>
+<script src="../js/api.js?v=horarios-compartidos-3"></script>
+<script src="../js/menu-perfil.js"></script>
+<script src="../js/inicio-comunicados.js?v=instructor-aislado-3"></script>
+</body>
+</html>

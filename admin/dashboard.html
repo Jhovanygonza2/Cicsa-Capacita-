@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>CICSA Capacita — Panel de administración</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="../css/admin-mejoras.css?v=revision-cursos-superadmin-1" />
+<link rel="stylesheet" href="../css/tutorial.css" />
+<link rel="stylesheet" href="../css/comunicados.css" />
+</head>
+<body>
+
+<div class="pagina-admin admin-shell">
+
+  <aside class="admin-sidebar" id="admin-sidebar" aria-label="Navegación administrativa">
+    <a class="admin-sidebar-marca" href="#resumen-admin" aria-label="CICSA · Ir al resumen">
+      <span class="admin-logo-marco"><img src="../assets/cicsa-logo.png" alt="CICSA" class="logo-cicsa-sidebar" width="1071" height="286"></span>
+      <span class="admin-marca-leyenda">CAPACITACIÓN</span>
+    </a>
+    <button id="btn-cerrar-menu-admin" class="admin-menu-cerrar" type="button" aria-label="Cerrar navegación">×</button>
+    <nav>
+      <span class="admin-nav-etiqueta">Vista general</span>
+      <a href="#resumen-admin" class="activo"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Resumen</a>
+      <a href="#actividad-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span> Actividad</a>
+      <a href="#notificaciones-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 17h12l-2-3V9a4 4 0 0 0-8 0v5l-2 3ZM10 21h4"/></svg></span> Notificaciones</a>
+      <a href="#comunicados-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 9h16M8 13h8M8 16h5"/></svg></span> Comunicados</a>
+      <span class="admin-nav-etiqueta">Gestión</span>
+      <a href="#usuarios-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3"/><path d="M3 21v-3a7 7 0 0 1 14 0v3M17 5a3 3 0 0 1 0 6M19 15a5 5 0 0 1 2 4"/></svg></span> Usuarios</a>
+      <a href="../trabajador/tutorial.html" data-asistencia-admin hidden style="display:none"><span class="admin-nav-icono" aria-hidden="true">?</span> Ayuda</a>
+      <a href="../trabajador/soporte.html" data-asistencia-admin hidden style="display:none"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H2v6h4v-6H4Zm16 0h2v6h-4v-6h2ZM20 18v3h-6"/></svg></span> Soporte</a>
+      <a href="#tutorial-admin"><span class="admin-nav-icono" aria-hidden="true">?</span> Tutorial de uso</a>
+      <a href="#cursos-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 4h7l2 2 2-2h7v16h-7l-2 2-2-2H3V4ZM12 6v16"/></svg></span> Cursos</a>
+      <a href="#aprobacion-cursos-admin" data-solo-superadmin><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6V3Zm8 0v5h5M9 14l2 2 4-5"/></svg></span> Aprobar cursos <span id="nav-contador-aprobaciones" class="admin-nav-contador" hidden>0</span></a>
+      <span class="admin-nav-etiqueta">Resultados</span>
+      <a href="#seguimiento-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3v18h17M8 16v-4M13 16V8M18 16V5"/></svg></span> Seguimiento</a>
+      <a href="#solicitudes-admin"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></span> Solicitudes y contraseñas</a>
+      <span class="admin-nav-etiqueta">Reconocimientos</span>
+      <a href="excelencia.html" target="_blank" rel="noopener" class="abrir-excelencia"><span class="admin-nav-icono" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3h8v6a4 4 0 0 1-8 0V3ZM8 5H4v3a4 4 0 0 0 4 4M16 5h4v3a4 4 0 0 1-4 4M12 13v5M8 21h8M9 18h6"/></svg></span> Tabla de excelencia</a>
+    </nav>
+  </aside>
+
+  <!-- ============ ENCABEZADO FIJO ============ -->
+  <nav class="topbar-admin">
+    <button class="btn btn-texto admin-menu-toggle" id="btn-menu-admin" type="button" aria-controls="admin-sidebar" aria-expanded="true" aria-label="Contraer navegación">☰</button>
+    <div class="topbar-admin-marca">
+      <img src="../assets/cicsa-logo.png" alt="CICSA" class="logo-cicsa-topbar" width="1071" height="286">
+      <div class="topbar-admin-marca-texto">
+        <span>Administración de capacitación</span>
+      </div>
+    </div>
+
+    <div class="topbar-admin-links">
+      <span class="admin-breadcrumbs"><a href="#resumen-admin">Panel</a><span aria-hidden="true">/</span><strong id="admin-seccion-actual">Resumen</strong></span>
+    </div>
+
+    <div class="topbar-admin-derecha">
+      <div class="admin-campana-wrap">
+        <button type="button" class="admin-campana" id="btn-campana-admin" aria-label="Abrir notificaciones" aria-expanded="false" aria-controls="panel-campana-admin">
+          <svg class="admin-campana-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 16.5h11l-1.1-1.1a2.1 2.1 0 0 1-.6-1.5V10a4.8 4.8 0 1 0-9.6 0v3.9c0 .6-.2 1.1-.6 1.5L6.5 16.5Z"></path><path d="M10 18.5a2 2 0 0 0 4 0"></path></svg>
+          <span class="admin-campana-badge" id="campana-admin-badge" style="display:none;">0</span>
+        </button>
+        <div class="admin-campana-panel" id="panel-campana-admin" hidden>
+          <div class="admin-campana-panel-head">
+            <div><strong>Notificaciones</strong><small id="campana-admin-resumen">Sin novedades</small></div>
+            <button type="button" class="btn btn-texto btn-sm" id="btn-ver-notificaciones">Ver todas</button>
+          </div>
+          <div id="campana-admin-lista" class="admin-campana-lista"></div>
+        </div>
+      </div>
+      <span class="badge-rol-admin">Administrador</span>
+      <button class="btn btn-secundario btn-sm" id="btn-cerrar-sesion">Cerrar sesión</button>
+    </div>
+  </nav>
+
+  <div class="contenedor-admin">
+
+    <!-- ============ ENCABEZADO ============ -->
+    <div class="admin-encabezado">
+      <div class="admin-encabezado-contenido">
+        <div class="admin-eyebrow">Panel de administración</div>
+        <h1 id="bienvenida-admin">Bienvenido</h1>
+        <p class="muted">Registra a tu equipo, asigna sus cursos y revisa el avance de la capacitación.</p>
+      </div>
+      <div class="admin-acciones-rapidas" aria-label="Acciones rápidas">
+        <a class="btn btn-primario btn-sm" data-abrir-form="alta-trabajador" href="#usuarios-admin">+ Nuevo usuario</a>
+        <a class="btn btn-secundario btn-sm" data-abrir-form="alta-curso" href="#cursos-admin">+ Nuevo curso</a>
+        <a class="btn btn-secundario btn-sm" href="#seguimiento-admin">Ver seguimiento</a>
+        <a class="btn btn-primario btn-sm boton-excelencia-principal abrir-excelencia" href="excelencia.html" target="_blank" rel="noopener"><svg class="btn-icon-corporativo" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"></path><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4M8 20h8M9 17h6"></path></svg> Tabla de excelencia</a>
+      </div>
+    </div>
+
+    <!-- ============ TARJETAS DE MÉTRICAS ============ -->
+    <section id="resumen-admin" class="admin-resumen-panel">
+      <div class="admin-bloque-encabezado">
+        <div>
+          <span class="admin-bloque-kicker">Vista general</span>
+          <h2>Resumen del sistema</h2>
+        </div>
+        <span class="admin-bloque-meta">Actualizado en tiempo real</span>
+      </div>
+      <div class="rejilla-metricas-admin">
+      <div class="metrica-admin">
+        <div class="metrica-admin-icono azul" aria-label="Trabajadores registrados">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M16 18.5v-1a3.5 3.5 0 0 0-3.5-3.5h-1A3.5 3.5 0 0 0 8 17.5v1"></path>
+          <circle cx="12" cy="8" r="3.2"></circle>
+          <path d="M19 18.5v-1a3 3 0 0 0-2.2-2.9"></path>
+          <path d="M5 18.5v-1a3 3 0 0 1 2.2-2.9"></path>
+        </svg>
+      </div>
+        <div class="metrica-admin-contenido">
+          <div class="metrica-admin-num" id="metrica-registrados">0</div>
+          <div class="metrica-admin-label">Trabajadores registrados</div>
+        </div>
+      </div>
+      <div class="metrica-admin">
+        <div class="metrica-admin-icono verde" aria-label="Activos recientemente">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M8.5 12.2l2.2 2.3 4.8-5.1"></path>
+          </svg>
+        </div>
+        <div class="metrica-admin-contenido">
+          <div class="metrica-admin-num" id="metrica-activos">0</div>
+          <div class="metrica-admin-label">Activos recientemente</div>
+        </div>
+      </div>
+      <div class="metrica-admin">
+        <div class="metrica-admin-icono rojo" aria-label="Cuentas desactivadas">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M15.5 8.5l-7 7"></path>
+            <path d="M8.5 8.5l7 7"></path>
+          </svg>
+        </div>
+        <div class="metrica-admin-contenido">
+          <div class="metrica-admin-num" id="metrica-desactivados">0</div>
+          <div class="metrica-admin-label">Cuentas desactivadas</div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ ACTIVIDAD DE TRABAJADORES ============ -->
+    <section id="actividad-admin" class="admin-seccion">
+      <h2>Actividad de trabajadores</h2>
+      <p class="muted">Aquí el administrador puede ver quién está activo, quién lleva días sin entrar y quién nunca ha iniciado sesión.</p>
+
+      <div class="barra-acciones">
+        <label class="filtro-admin" for="filtro-actividad">Estado
+          <select id="filtro-actividad">
+          <option value="">Todos</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Sin actividad</option>
+          <option value="nunca">Nunca inició sesión</option>
+          </select>
+        </label>
+        <div class="buscador">
+          <svg class="icono-lupa" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="5.5"></circle>
+            <path d="M16 16L20.5 20.5"></path>
+          </svg>
+          <input type="text" id="buscar-actividad" placeholder="Buscar trabajador" />
+        </div>
+      </div>
+
+      <div class="tabla-admin-wrap">
+        <table>
+          <thead>
+            <tr><th>Trabajador</th><th>Rol</th><th>Último acceso</th><th>Tiempo</th><th>Estado</th><th>Acción</th></tr>
+          </thead>
+          <tbody id="tabla-actividad"></tbody>
+        </table>
+      </div>
+      <div class="paginacion-admin" id="paginacion-actividad" aria-label="Paginación de actividad"></div>
+      <div id="historial-sesiones" hidden>
+        <h3>Conexiones de trabajadores</h3>
+        <p>Entrada, salida y tiempo de sesión. Este tiempo no equivale a tiempo de estudio.</p>
+        <p id="sesiones-demo" class="muted" hidden>Modo demo: registros guardados en este navegador; no se comparten entre equipos.</p>
+        <div class="barra-acciones">
+          <label>Buscar trabajador <input id="buscar-sesiones" type="search" placeholder="Nombre del trabajador"></label>
+          <button id="actualizar-sesiones" type="button" class="btn btn-secundario btn-sm">Actualizar conexiones</button>
+        </div>
+        <p id="sesiones-error" role="status" aria-live="polite"></p>
+        <div class="tabla-admin-wrap"><table>
+          <thead><tr><th>Trabajador</th><th>Conexión</th><th>Desconexión</th><th>Tiempo conectado</th><th>Estado / motivo</th></tr></thead>
+          <tbody id="tabla-sesiones"></tbody>
+        </table></div>
+        <div id="paginacion-sesiones" class="paginacion-admin" aria-label="Paginación de conexiones"></div>
+        <p class="muted">Sin señal durante más de 2 minutos: salida estimada en la última señal recibida. Cerrar una pestaña no finaliza la sesión si otra sigue abierta.</p>
+      </div>
+
+    </section>
+
+    <!-- ============ NOTIFICACIONES ============ -->
+    <section id="notificaciones-admin" class="admin-seccion admin-notificaciones">
+      <div class="admin-notificaciones-encabezado">
+        <h2>Notificaciones <span id="notificaciones-admin-badge" class="badge badge-proceso" style="display:none;">0</span></h2>
+        <button type="button" class="btn btn-secundario btn-sm" id="btn-eliminar-notificaciones">Eliminar todas</button>
+      </div>
+      <ul id="lista-notificaciones-admin" class="lista-notificaciones-admin"></ul>
+    </section>
+
+    <!-- ============ TRABAJADORES REGISTRADOS (RF-001, RF-005, RF-006) ============ -->
+    <section id="comunicados-admin" class="admin-seccion admin-comunicados" aria-labelledby="comunicados-admin-titulo">
+      <div class="admin-seccion-cabecera">
+        <div><h2 id="comunicados-admin-titulo">Administrar comunicados</h2><p class="muted">Publica avisos visibles en el apartado Inicio de los trabajadores. Máximo 3 comunicados activos.</p></div>
+        <span class="badge-rol-admin">Solo admin y superadmin</span>
+      </div>
+      <form id="form-comunicado" class="comunicado-formulario">
+        <input type="hidden" id="comunicado-id">
+        <label for="comunicado-titulo">Título del comunicado <input id="comunicado-titulo" maxlength="120" required placeholder="Ej. Nuevo curso disponible"></label>
+        <div class="comunicado-form-grid">
+          <label for="comunicado-categoria">Categoría <select id="comunicado-categoria"><option value="Aviso">Aviso</option><option value="Convocatoria">Convocatoria / nuevo curso</option><option value="Reconocimiento">Reconocimiento</option><option value="Informativo">Informativo</option><option value="Seguridad">Seguridad</option></select></label>
+          <label for="comunicado-fecha">Fecha del comunicado <input type="date" id="comunicado-fecha" required></label>
+        </div>
+        <label for="comunicado-texto">Texto del comunicado (opcional si publicas una imagen) <textarea id="comunicado-texto" rows="5" maxlength="3000" placeholder="Escribe aquí los detalles. Puedes dejarlo vacío si el comunicado será solo una imagen."></textarea></label>
+        <label for="comunicado-imagen">Imagen (opcional) <input id="comunicado-imagen" type="file" accept="image/*"><small class="campo-ayuda">Se optimizará la imagen para reducir su tamaño.</small></label>
+        <div class="comunicado-form-acciones"><button class="btn btn-primario" type="submit" id="btn-guardar-comunicado">Publicar comunicado</button><button class="btn btn-secundario" type="button" id="btn-cancelar-comunicado" hidden>Cancelar edición</button></div>
+        <p id="comunicado-admin-estado" role="status" aria-live="polite"></p>
+      </form>
+      <div class="comunicados-admin-lista-cabecera"><h3>Comunicados publicados <span id="comunicados-contador">0/3</span></h3></div>
+      <div id="comunicados-admin-lista" class="comunicados-admin-lista"></div>
+    </section>
+
+    <section id="usuarios-admin" class="admin-seccion">
+      <h2>Trabajadores registrados</h2>
+      <p class="muted">Alta, activación, desactivación y consulta del perfil de los trabajadores.</p>
+      <div class="barra-acciones admin-tabla-herramientas">
+        <div class="buscador">
+          <svg class="icono-lupa" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="5.5"></circle>
+            <path d="M16 16L20.5 20.5"></path>
+          </svg>
+          <input type="search" id="buscar-usuarios" placeholder="Buscar por nombre, correo o rol" aria-label="Buscar usuarios" />
+        </div>
+        <span class="muted admin-ayuda-filtro">Filtra por nombre, correo o nivel de acceso.</span>
+      </div>
+
+      <details class="admin-alta-panel" id="alta-trabajador"><summary><span><strong>Registrar trabajador</strong><small>Alta individual o importación desde Excel</small></span><span class="admin-alta-indicador" aria-hidden="true">+</span></summary>
+<form class="form-inline-admin" id="form-usuario">
+        <div class="form-inline-admin-fila cols-4">
+          <div class="campo">
+            <label for="nu-nombre">Nombre completo</label>
+            <input type="text" id="nu-nombre" placeholder="Ej. Juan Carlos Pérez Domínguez" required />
+          </div>
+          <div class="campo">
+            <label for="nu-area">Área de trabajo</label>
+            <input type="text" id="nu-area" placeholder="Ej. Operaciones, Seguridad..." required />
+          </div>
+          <div class="campo">
+            <label for="nu-rol">Rol de acceso</label>
+            <select id="nu-rol" required>
+              <option value="trabajador" selected>Trabajador</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="nu-password">Contraseña</label>
+            <input type="text" id="nu-password" class="password-mask" placeholder="Asignar contraseña" autocomplete="new-password" required />
+          </div>
+          <button type="submit" class="btn btn-primario">+ Agregar</button>
+        </div>
+        <div class="importar-trabajadores-admin">
+          <div><strong>¿Tienes muchos trabajadores?</strong><span>Sube un Excel con 50, 100 o más registros y el sistema los dará de alta automáticamente.</span></div>
+          <div class="importar-trabajadores-acciones">
+            <input type="file" id="archivo-trabajadores-excel" accept=".xlsx,.xls,.csv" hidden />
+            <button type="button" class="btn btn-secundario" id="btn-importar-trabajadores">📥 Importar trabajadores desde Excel</button>
+            <button type="button" class="btn btn-texto btn-sm" id="btn-plantilla-trabajadores">Descargar plantilla</button>
+          </div>
+        </div>
+        <input type="hidden" id="nu-correo" />
+      </form>
+      </details>
+
+      <div class="tabla-admin-wrap">
+        <table>
+          <thead>
+            <tr><th>Nombre</th><th>Área</th><th>Rol</th><th>Estado</th><th>Avance</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="tabla-usuarios"></tbody>
+        </table>
+      </div>
+      <div class="paginacion-admin" id="paginacion-usuarios" aria-label="Paginación de trabajadores"></div>
+    </section>
+
+    <!-- ============ SOLICITUDES DE RESTABLECIMIENTO ============ -->
+
+
+    <!-- ============ CURSOS DEL PROGRAMA (RF-009..016) ============ -->
+    <!-- ============ APROBACIÓN DE CURSOS DEL INSTRUCTOR (SÚPER ADMIN) ============ -->
+    <section id="aprobacion-cursos-admin" class="admin-seccion aprobacion-cursos-seccion" data-solo-superadmin>
+      <div class="admin-seccion-cabecera">
+        <div>
+          <span class="cursos-admin-kicker">Revisión del Súper administrador</span>
+          <h2>Aprobación de cursos <span id="contador-aprobaciones-cursos" class="badge badge-proceso" style="display:none;">0</span></h2>
+          <p class="muted">Revisa los cursos enviados por los instructores. Puedes aprobarlos y publicarlos o solicitar cambios con un comentario.</p>
+        </div>
+        <span class="badge-rol-admin">Súper administrador</span>
+      </div>
+      <div id="lista-aprobaciones-cursos" class="aprobacion-cursos-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="cursos-admin" class="admin-seccion cursos-admin-seccion">
+      <div class="cursos-admin-encabezado">
+        <div>
+          <span class="cursos-admin-kicker">Centro de cursos</span>
+          <h2>Bienvenido - Nuevo curso</h2>
+          <p class="muted">Crea, organiza y asigna cursos desde un solo lugar.</p>
+        </div>
+        <div class="cursos-admin-guia" aria-label="Pasos para crear un curso">
+          <span class="activo"><b>1</b> Datos</span>
+          <span><b>2</b> Recursos</span>
+          <span><b>3</b> Contenido</span>
+        </div>
+      </div>
+
+      <details class="admin-alta-panel" id="alta-curso"><summary><span><strong>Crear nuevo curso</strong><small>Datos, asignación, recursos y evaluaciones</small></span><span class="admin-alta-indicador" aria-hidden="true">+</span></summary>
+<form class="curso-editor" id="form-curso">
+        <div class="curso-editor-cabecera">
+          <div>
+            <span class="curso-editor-kicker">Constructor de contenidos</span>
+            <h3 id="curso-editor-titulo">Crear nuevo curso</h3>
+            <p class="muted">Completa la información y organiza el contenido paso a paso.</p>
+            <div class="curso-editor-resumen" id="curso-editor-resumen">0 temas · 0 trabajadores asignados</div>
+          </div>
+          <span class="curso-editor-estado" id="curso-editor-estado">Borrador nuevo</span>
+        </div>
+        <div class="curso-editor-seccion">
+          <div class="curso-editor-seccion-titulo"><span class="curso-editor-numero">01</span><div><h4>Información general</h4><p>Define los datos que verán los trabajadores.</p></div></div>
+          <div class="curso-editor-grid">
+            <div class="campo">
+              <label for="nc-nombre">Título del curso</label>
+              <input type="text" id="nc-nombre" placeholder="Ej. Seguridad e higiene industrial" required />
+            </div>
+            <div class="campo">
+              <label for="nc-horas">Duración del curso (horas)</label>
+              <input type="number" id="nc-horas" min="0.5" step="0.5" placeholder="2" required />
+            </div>
+            <div class="campo curso-editor-asignacion">
+              <label for="nc-asignacion-area">Área de trabajo</label>
+              <select id="nc-asignacion-area" class="select-asignacion-area">
+                <option value="">Selecciona un área</option>
+              </select>
+              <small class="muted">Primero selecciona un área para mostrar sus trabajadores.</small>
+            </div>
+            <div class="campo curso-editor-asignacion">
+              <label>Trabajadores que pueden realizarlo</label>
+              <div id="nc-asignacion-trabajadores" class="lista-asignacion-trabajadores"></div>
+              <small class="muted">La lista permanece oculta hasta elegir un área o buscar un trabajador.</small>
+            </div>
+            <div class="campo curso-editor-descripcion">
+              <label for="nc-descripcion">Descripción</label>
+              <textarea id="nc-descripcion" rows="3" placeholder="Explica brevemente qué aprenderá el trabajador..." required></textarea>
+            </div>
+            <div class="campo">
+              <label for="nc-fecha-inicio">Fecha y hora de apertura</label>
+              <input type="datetime-local" id="nc-fecha-inicio" />
+              <small class="muted">El trabajador podrá acceder desde este momento. Si se deja vacío, inicia al aprobar y publicar.</small>
+            </div>
+            <div class="campo">
+              <label for="nc-fecha-fin">Fecha y hora de cierre</label>
+              <input type="datetime-local" id="nc-fecha-fin" aria-describedby="ayuda-cierre-curso" />
+              <small class="muted" id="ayuda-cierre-curso">El trabajador perderá el acceso al llegar esta fecha y hora. Si se deja vacío, el curso permanecerá abierto.</small>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secundario curso-contenido-abrir" id="btn-abrir-contenido-curso">
+          Abrir recursos y estructura
+        </button>
+        <section class="curso-contenido-modal" id="modal-contenido-curso" aria-hidden="true" hidden>
+          <div class="curso-contenido-modal-fondo" data-cerrar-contenido></div>
+          <div class="curso-contenido-card curso-editor-seccion" role="dialog" aria-modal="true" aria-labelledby="titulo-contenido-curso">
+            <button type="button" class="curso-contenido-cerrar" id="btn-cerrar-contenido-curso" aria-label="Cerrar ventana">×</button>
+            <div class="curso-contenido-card-cabecera">
+              <div class="curso-contenido-card-titulo">
+                <div class="curso-contenido-card-titulo-fila">
+                  <span class="curso-editor-numero">02</span>
+                  <h4 id="titulo-contenido-curso">Recursos y estructura del aprendizaje</h4>
+                </div>
+                <p class="muted">Agrega recursos visuales y organiza el curso en temas, unidades y subtemas.</p>
+              </div>
+              <span class="curso-contenido-card-ayuda">Contenido del curso</span>
+            </div>
+            <div class="curso-contenido-bloque curso-contenido-recursos">
+              <div class="curso-contenido-bloque-titulo">
+                <strong>Recursos visuales</strong>
+                <span>Portada y video introductorio</span>
+              </div>
+              <div class="curso-media-grid">
+                <div class="curso-media-field">
+                  <label for="nc-imagen">Imagen de portada</label>
+                  <input type="file" id="nc-imagen" accept="image/*" />
+                  <div class="curso-media-preview" id="nc-imagen-preview">Sin imagen seleccionada</div>
+                </div>
+                <div class="curso-media-field">
+                  <label for="nc-video">Video introductorio</label>
+                  <input type="file" id="nc-video" accept="video/*" />
+                  <div class="curso-media-preview" id="nc-video-preview">Sin video seleccionado</div>
+                </div>
+              </div>
+            </div>
+            <div class="curso-contenido-bloque curso-contenido-estructura">
+              <div class="curso-contenido-bloque-titulo">
+                <strong>Estructura del aprendizaje</strong>
+                <span>Ordena el recorrido del trabajador</span>
+              </div>
+              <div id="constructor-modulos"></div>
+              <button type="button" class="btn btn-secundario btn-sm" id="btn-agregar-modulo">+ Agregar tema</button>
+              <div class="curso-evaluaciones-estructura">
+                <div class="curso-evaluacion-config">
+                  <div>
+                    <strong>Evaluación del curso</strong>
+                    <span>Se genera automáticamente con 5 preguntas aleatorias tomadas del banco del Examen final.</span>
+                  </div>
+                  <span class="badge badge-info">5 preguntas automáticas</span>
+                </div>
+                <div class="curso-evaluacion-config">
+                  <div>
+                    <strong>Examen final</strong>
+                    <span>Configura un banco de 5 a 25 preguntas. Al trabajador se le mostrarán en orden aleatorio.</span>
+                  </div>
+                  <button type="button" class="btn btn-primario btn-sm" id="btn-agregar-examen-estructura">+ Configurar examen final</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="curso-editor-acciones curso-editor-acciones-fijas">
+          <span class="curso-editor-ayuda">Revisa los datos antes de guardar.</span>
+          <button type="button" class="btn btn-secundario oculto" id="btn-cancelar-edicion">Cancelar edición</button>
+          <button type="submit" class="btn btn-primario" id="btn-guardar-curso">+ Agregar curso</button>
+        </div>
+      </form>
+      </details>
+
+      <div id="tabla-cursos-admin" class="cursos-admin-grid" aria-live="polite"></div>
+    </section>
+
+
+    <!-- ============ SEGUIMIENTO ACADÉMICO (RF-039..044) ============ -->
+    <section id="seguimiento-admin" class="admin-seccion">
+      <h2>Seguimiento académico</h2>
+      <p class="muted">Consulta el avance académico por área, trabajador, curso y periodo; después descarga el resultado en Excel o CSV.</p>
+
+      <div class="reporte-seguimiento-panel">
+        <div class="reporte-seguimiento-titulo"><div><strong>📊 Generar reporte académico</strong><span>Filtra por área, trabajador, curso y periodo. El reporte se descarga en Excel.</span></div></div>
+        <div class="reporte-seguimiento-filtros">
+          <label class="filtro-admin filtro-card">👥 Área de trabajo<select id="reporte-filtro-area"><option value="">Todas las áreas</option></select></label>
+          <label class="filtro-admin filtro-card filtro-trabajador-reporte">👤 Trabajador
+            <select id="reporte-filtro-trabajador" multiple size="4" aria-label="Seleccionar uno o varios trabajadores"><option value="">Todos los trabajadores</option></select>
+            <div id="reporte-trabajadores-selector" class="selector-multiple-admin" aria-label="Trabajadores para el reporte"></div>
+            <small class="muted">Selecciona un área para mostrar sus trabajadores, o usa el buscador para encontrar uno.</small>
+          </label>
+          <label class="filtro-admin filtro-card">📚 Curso<select id="reporte-filtro-curso"><option value="">Todos los cursos</option></select></label>
+          <label class="filtro-admin filtro-card fecha-card">📅 Desde<input type="date" id="reporte-fecha-desde" /></label>
+          <label class="filtro-admin filtro-card fecha-card">📅 Hasta<input type="date" id="reporte-fecha-hasta" /></label>
+        </div>
+        <div class="reporte-seguimiento-acciones">
+          <label class="filtro-admin estado-reportes">Estado<select id="filtro-estado-seguimiento"><option value="">Todos los estados</option><option value="Completado">Completado</option><option value="En progreso">En progreso</option><option value="Sin iniciar">Sin iniciar</option></select></label>
+          <div class="buscador"><svg class="icono-lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="5.5"></circle><path d="M16 16L20.5 20.5"></path></svg><input type="text" id="buscar-seguimiento" placeholder="Buscar por nombre..." /></div>
+          <button class="btn btn-primario" id="btn-generar-reporte">⬇ Descargar reporte Excel</button>
+          <button class="btn btn-secundario" id="btn-exportar">Exportar CSV rápido</button>
+        </div>
+        <div id="resumen-reporte-academico" class="resumen-reporte-academico" aria-live="polite">Selecciona un área o trabajador para consultar su información.</div>
+        <div class="reporte-vista-previa">
+          <div class="reporte-vista-previa-cabecera"><strong>Vista previa del reporte</strong><span>Se descargará exactamente la información mostrada aquí.</span></div>
+          <div class="tabla-admin-wrap reporte-vista-previa-tabla">
+            <table>
+              <thead><tr><th>Trabajador</th><th>Área</th><th>Curso</th><th>Avance</th><th>Calificación</th><th>Estado</th><th>Fecha</th><th>Fecha de inicio del curso</th></tr></thead>
+              <tbody id="tabla-vista-previa-reporte"><tr><td colspan="8" class="muted" style="text-align:center;padding:18px">Selecciona filtros para consultar el reporte.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="solicitudes-admin" class="admin-seccion">
+      <h2>Solicitudes y contraseñas</h2>
+      <p class="muted">La contraseña permanece oculta por seguridad. Puedes localizar al trabajador, atender su solicitud y actualizar su contraseña.</p>
+      <div class="barra-acciones admin-tabla-herramientas">
+        <div class="buscador">
+          <svg class="icono-lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="5.5"></circle><path d="M16 16L20.5 20.5"></path></svg>
+          <input type="search" id="buscar-solicitudes" placeholder="Buscar trabajador por nombre o correo" aria-label="Buscar trabajador en solicitudes y contraseñas" />
+        </div>
+        <span class="muted admin-ayuda-filtro">Las solicitudes pendientes aparecen primero.</span>
+      </div>
+
+      <div class="tabla-admin-wrap">
+        <table>
+          <thead>
+            <tr><th>Trabajador</th><th>Solicitud</th><th>Contraseña actual</th><th>Nueva contraseña</th><th>Acción</th></tr>
+          </thead>
+          <tbody id="tabla-solicitudes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="mis-solicitudes-cursos" class="admin-seccion" hidden aria-labelledby="mis-solicitudes-cursos-titulo">
+      <h2 id="mis-solicitudes-cursos-titulo">Mis solicitudes</h2>
+      <p class="muted">Consulta la última solicitud de revisión que enviaste para cada curso.</p>
+      <div class="tabla-admin-wrap">
+        <table>
+          <thead><tr><th scope="col">Curso</th><th scope="col">Fecha</th><th scope="col">Estatus</th><th scope="col">Comentario</th></tr></thead>
+          <tbody id="tabla-mis-solicitudes-cursos" aria-live="polite"><tr><td colspan="4">Cargando solicitudes…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section id="tutorial-admin" class="admin-bloque" aria-labelledby="tutorial-admin-titulo">
+      <div class="admin-bloque-cabecera">
+        <div>
+          <span class="admin-bloque-kicker">Orientación al personal</span>
+          <h2 id="tutorial-admin-titulo">Administrar tutorial de uso</h2>
+          <a class="btn btn-secundario btn-sm tutorial-ver-publicado" href="../trabajador/tutorial.html" target="_blank" rel="noopener">Ver tutorial de uso <span aria-hidden="true">↗</span></a>
+          <p class="muted">Publica documentos PDF. Aparecerán en Materiales de apoyo de la guía del trabajador.</p>
+        </div>
+      </div>
+      <form id="form-tutorial-admin" class="form-grid">
+        <label for="tutorial-titulo">Título
+          <span class="campo-ayuda">Nombre del material</span>
+          <input id="tutorial-titulo" required maxlength="120" placeholder="Ej. Tutorial de bienvenida">
+        </label>
+        <label for="tutorial-tipo">Tipo de material
+          <span class="campo-ayuda">Selecciona cómo se mostrará</span>
+          <select id="tutorial-tipo"><option value="pdf">Documento PDF</option></select>
+        </label>
+        <label id="tutorial-archivo-campo" for="tutorial-archivo" class="tutorial-campo-archivo">
+          Subir archivo desde tu computadora
+          <span class="campo-ayuda">Elige un documento PDF guardado en tu equipo</span>
+          <input id="tutorial-archivo" type="file" accept=".pdf,application/pdf">
+          <span id="tutorial-archivo-nombre" class="archivo-seleccionado" aria-live="polite">Ningún archivo seleccionado</span>
+        </label>
+        <label id="tutorial-url-campo" for="tutorial-url">URL o ruta del archivo
+          <span class="campo-ayuda">Puedes indicar una ruta al PDF si ya está alojado</span>
+          <input id="tutorial-url" placeholder="../assets/documento.pdf">
+        </label>
+        <label for="tutorial-descripcion">Descripción
+          <textarea id="tutorial-descripcion" rows="4" placeholder="Explica brevemente qué aprenderá el trabajador..."></textarea>
+        </label>
+        <div class="tutorial-form-pie">
+          <span>El material estará disponible en la guía del trabajador.</span>
+          <button class="btn btn-primario" type="submit">Publicar tutorial</button>
+        </div>
+      </form>
+      <div class="tutorial-publicados-cabecera"><h3>Materiales publicados</h3><p class="muted">Estos recursos se muestran en el mismo orden en la guía del trabajador.</p></div>
+      <p id="tutorial-publicacion-estado" role="status" aria-live="polite"></p>
+      <div id="tutorial-admin-lista"></div>
+    </section>
+
+    <p class="pie-admin">Demo de plataforma de capacitación para CICSA — Ciudad del Carmen, Campeche. Datos guardados localmente; pendiente conectar base de datos.</p>
+
+  </div>
+</div>
+
+<section id="modal-perfil-trabajador" class="perfil-trabajador-modal" aria-hidden="true" hidden>
+  <div class="perfil-trabajador-fondo" data-cerrar-perfil-trabajador></div>
+  <article class="perfil-trabajador-card" role="dialog" aria-modal="true" aria-labelledby="perfil-trabajador-titulo">
+    <button type="button" class="perfil-trabajador-cerrar" data-cerrar-perfil-trabajador aria-label="Cerrar perfil">×</button>
+    <header class="perfil-trabajador-encabezado">
+      <div class="perfil-trabajador-avatar" id="perfil-trabajador-iniciales">--</div>
+      <div>
+        <span class="admin-bloque-kicker" id="perfil-trabajador-etiqueta">Perfil de capacitación</span>
+        <h2 id="perfil-trabajador-titulo">Trabajador</h2>
+        <p id="perfil-trabajador-correo" class="muted"></p>
+        <span id="perfil-trabajador-area" class="perfil-trabajador-area">Área: Sin asignar</span>
+      </div>
+    </header>
+    <p id="perfil-trabajador-estado" role="status" aria-live="polite"></p>
+    <button class="btn btn-secundario" id="perfil-trabajador-reintentar" type="button" hidden>Reintentar</button>
+    <div class="perfil-trabajador-metricas">
+      <div><strong id="perfil-trabajador-avance">0%</strong><span>Promedio de aprobación</span></div>
+      <div><strong id="perfil-trabajador-horas">0 h</strong><span>Horas invertidas en capacitación</span></div>
+      <div><strong id="perfil-trabajador-cursos">0</strong><span>Cursos terminados</span></div>
+      <div><strong id="perfil-trabajador-promedio">—</strong><span>Promedio</span></div>
+    </div>
+    <section class="perfil-trabajador-seccion">
+      <h3>Insignias obtenidas</h3>
+      <div id="perfil-trabajador-insignias" class="perfil-trabajador-insignias"></div>
+    </section>
+    <section class="perfil-trabajador-seccion">
+      <h3>Cursos y avance</h3>
+      <div id="perfil-trabajador-cursos-lista" class="perfil-trabajador-cursos-lista"></div>
+    </section>
+  </article>
+</section>
+
+<div id="admin-toast-container" class="toast-container" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script src="../js/api.js?v=horarios-compartidos-3"></script>
+<script src="../js/tutoriales.js"></script>
+<!-- admin-dashboard.js fue dividido en módulos por funcionalidad dentro de js/admin/ para facilitar su mantenimiento. -->
+<!-- El orden de carga importa: estado-utilidades primero, dashboard-arranque siempre al final. -->
+<script src="../js/admin/estado-utilidades.js?v=instructor-aislado-3"></script>
+<script src="../js/admin/editor-curso.js?v=estructura-fechas-v1"></script>
+<script src="../js/admin/notificaciones.js?v=revision-cursos-superadmin-1"></script>
+<script src="../js/admin/campana-admin.js?v=revision-cursos-superadmin-1"></script>
+<script src="../js/admin/metricas-actividad.js"></script>
+<script src="../js/admin/sesiones.js?v=1"></script>
+<script src="../js/admin/usuarios.js"></script>
+<script src="../js/admin/solicitudes.js"></script>
+<script src="../js/admin/cursos.js?v=estructura-fechas-v1"></script>
+<script src="../js/admin/aprobacion-cursos.js?v=estructura-fechas-v1"></script>
+<script src="../js/admin/examenes.js?v=evaluaciones-v4"></script>
+<script src="../js/admin/perfil-trabajador.js"></script>
+<script src="../js/admin/seguimiento.js"></script>
+<script src="../js/admin/permisos.js?v=revision-cursos-superadmin-1"></script>
+<script src="../js/admin/navegacion.js?v=2"></script>
+<script src="../js/admin/tutorial-admin.js"></script>
+<script src="../js/admin/comunicados.js"></script>
+<script src="../js/admin/mis-solicitudes-cursos.js?v=estructura-fechas-v1"></script>
+<script src="../js/admin/dashboard-arranque.js?v=revision-cursos-superadmin-1"></script>
+</body>
+</html>
